@@ -2,49 +2,50 @@ require 'spec_helper'
 
 describe "Static Pages" do
 
-  let(:base_title) { "Proton" }
+  subject { page }
+
+  shared_examples_for "all static pages" do
+    it { should have_content(heading) }
+    it { should have_title(full_title(page_title)) }
+  end
 
   describe "Home page" do
+    before { visit root_path }
+    let(:heading)    { 'Proton' }
+    let(:page_title) { '' }
 
-    it "should have the h1 'Proton'" do
-      visit root_path
-      expect(page).to have_content('Proton')
-    end
-
-    it "should have the base title" do
-      visit root_path
-      expect(page).to have_title("#{base_title}")
-    end
-
-    it "should not have a custom page title" do
-      visit root_path
-      expect(page).not_to have_title('HOME - ')
-    end
+    it_should_behave_like "all static pages"
+    it { should_not have_title('Home - ') }
   end
 
   describe "Help page" do
+    before { visit help_path }
+    let(:heading)    { 'Proton' }
+    let(:page_title) { 'Help' }
 
-    it "should have the h1 'Help'" do
-      visit help_path
-      expect(page).to have_content('Help')
-    end
-
-    it "should have the right title" do
-      visit help_path
-      expect(page).to have_title("Help - #{base_title}")
-    end
+    it_should_behave_like "all static pages"
   end
 
   describe "About page" do
+    before { visit about_path }
+    let(:heading)    { 'Proton' }
+    let(:page_title) { 'About' }
 
-    it "should have the h1 'About Proton'" do
-      visit about_path
-      expect(page).to have_content('About Proton')
+    it_should_behave_like "all static pages"
+  end
+
+  it "should have the right links on the layout" do
+    visit root_path
+
+    first(:link, 'Help').click
+    expect(page).to have_title(full_title('Help'))
+
+    within(:xpath, '//footer[@class="footer"]') do
+      click_link 'Help'
+      expect(page).to have_title(full_title('Help'))
     end
 
-    it "should have the right title" do
-      visit about_path
-      expect(page).to have_title("About - #{base_title}")
-    end
+    click_link 'About'
+    expect(page).to have_title(full_title('About'))
   end
 end

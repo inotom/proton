@@ -1,0 +1,99 @@
+@import "bootstrap";
+
+/* universal {{{ */
+
+html {
+  overflow-y: scroll;
+  font-size: 16px;
+}
+
+body {
+  padding: {
+    top: 60px;
+  }
+  font-family: Verdana, sans-serif;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin: {
+      bottom: 10px;
+    }
+  }
+}
+
+/* }}} */
+
+/* typography {{{ */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  margin: {
+    bottom: 30px;
+  }
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: -2px;
+}
+
+h2 {
+  margin: {
+    bottom: 30px;
+  }
+  color: #999;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: normal;
+  letter-spacing: -1px;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.7rem;
+}
+
+/* }}} */
+
+/* header {{{ */
+#logo {
+  float: left;
+  margin: {
+    right: 10px;
+  }
+  padding: {
+    top: 9px;
+  }
+  color: #eee;
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+header {
+  .navbar-inner {
+    .nav {
+      a {
+        //color: #eee;
+        //&:hover {
+        //}
+      }
+    }
+  }
+}
+/* }}} */

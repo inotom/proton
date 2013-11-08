@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   # return complete page title
-  def full_title(page_title)
+  def full_title(page_title = '')
     base_title = "Proton"
     if page_title.empty?
       base_title

@@ -24,5 +24,7 @@ doc/
 *~
 .pass
 .pwd
+.idea
+.secret
 /vendor/bin
 /vendor/bundle

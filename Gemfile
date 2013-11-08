@@ -7,6 +7,13 @@ gem 'rails', '4.0.1'
 # development environment
 group :development do
   gem 'sqlite3'
+  gem 'rspec-rails', '2.14.0'
+end
+
+# test environment
+group :test do
+  gem 'selenium-webdriver', '2.37.0'
+  gem 'capybara', '2.1.0'
 end
 
 # production environment
@@ -28,10 +35,10 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '3.0.4'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '1.3.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

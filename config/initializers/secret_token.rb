@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Proton::Application.config.secret_key_base = 'f5002a06745d3085dbaf2ca7164d44887064f8aba6c06b38df3c903cbe1c3002c6f02ca64639b2f85141660a843e56a71315fb48e9b8613efa294ab6ad4d8536'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Proton::Application.config.secret_key_base = secure_token

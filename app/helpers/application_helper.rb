@@ -9,4 +9,12 @@ module ApplicationHelper
       "#{page_title} - #{base_title}"
     end
   end
+
+  def work_status_class(status)
+    if status
+      "done"
+    else
+      "progress"
+    end
+  end
 end

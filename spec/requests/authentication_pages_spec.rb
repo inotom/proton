@@ -112,6 +112,41 @@ describe 'AuthenticationPages' do
         end
       end
 
+      describe 'in the Works controller' do
+        let(:work) { FactoryGirl.create(:work) }
+
+        describe 'visiting the edit page' do
+          before { visit edit_work_path(work) }
+          it { should have_title('Sign in') }
+        end
+
+        describe 'submitting to the update action' do
+          before { patch work_path(work) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe 'visiting the work show page' do
+          before { visit work_path(work) }
+          it { should have_title('Sign in') }
+        end
+
+        describe 'submitting to the destroy action' do
+          before { delete work_path(work) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe 'visiting the work new page' do
+          before { visit new_work_path(work) }
+          it { should have_title('Sign in') }
+        end
+
+        describe 'submitting to the create action' do
+          before { post works_path(work) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+      end
+
       describe 'in the Users contoroller' do
 
         describe 'visiting the edit page' do

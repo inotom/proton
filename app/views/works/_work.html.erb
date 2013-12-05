@@ -1,0 +1,17 @@
+<li class="work-<%= work_status_class(work.finished) %>">
+  <h3 class="work-title"><%= work.title %></h3>
+  <div class="work-info">
+    <span class="status-info">
+      <span class="status-claimed-<%= work_status_class(work.claimed) %>">claimed:</span>
+      <span class="status-receipted-<%= work_status_class(work.receipted) %>">receipted:</span>
+    </span>
+    <span class="timestamp">
+      <span class="updated">
+        Updated <%= time_ago_in_words(work.updated_at) %> ago.
+      </span>
+      <span class="created">
+        Created <%= time_ago_in_words(work.created_at) %> ago.
+      </span>
+    </span>
+  </div>
+</li>

@@ -55,6 +55,9 @@ describe "User Pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:work1) { FactoryGirl.create(:work, user: user, title: 'New Work1') }
+    let!(:work2) { FactoryGirl.create(:work, user: user, title: 'New Work2') }
+
     before do
       sign_in user
       visit user_path(user)
@@ -62,6 +65,13 @@ describe "User Pages" do
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+
+    describe "works" do
+      it { should have_content(work1.title) }
+      it { should have_content(work2.title) }
+      it { should have_content(user.works.count) }
+      it { should have_link('Create work', href: new_work_path) }
+    end
   end
 
   describe "signup page" do

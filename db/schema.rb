@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204053404) do
+ActiveRecord::Schema.define(version: 20131205110613) do
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -25,5 +25,20 @@ ActiveRecord::Schema.define(version: 20131204053404) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "works", force: true do |t|
+    t.string   "title"
+    t.decimal  "payment"
+    t.text     "other"
+    t.boolean  "finished",   default: false
+    t.boolean  "claimed",    default: false
+    t.boolean  "receipted",  default: false
+    t.integer  "user_id"
+    t.integer  "orderer_id", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "works", ["user_id", "created_at"], name: "index_works_on_user_id_and_created_at"
 
 end

@@ -15,5 +15,16 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+    users = User.all(limit: 6)
+    50.times do |n|
+      title = "Work Title #{n}"
+      other = Faker::Lorem.sentence(5)
+      users.each { |user| user.works.create!(title: title,
+                                             payment: 100.0,
+                                             other: other,
+                                             user: user,
+                                             orderer_id: 0) }
+    end
   end
 end

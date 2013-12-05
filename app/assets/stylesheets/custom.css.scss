@@ -183,7 +183,7 @@ aside {
 }
 
 .gravatar {
-  float: left;
+  display: inline-block;
   margin: {
     right: 10px;
   }
@@ -227,6 +227,95 @@ input {
     border-top: 1px solid $grayLighter;
     &:last-child {
       border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+/* }}} */
+
+/* works {{{ */
+.create-work-link {
+  margin: 20px 0 0;
+}
+.works-title {
+  margin: 10px 0 0;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+  color: #000;
+}
+.works {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.work-done {
+  opacity: .5;
+}
+.work-progress {
+  opacity: 1;
+}
+.work-title {
+  margin: 5px 0;
+  font-size: 20px;
+}
+.work-info {
+  position: relative;
+  overflow: hidden;
+  .status-info {
+    text-align: right;
+    display: block;
+    float: left;
+    width: 50%;
+    .status-claimed-done {
+      &:after {
+        display: inline-block;
+        content: 'o';
+        margin-right: 10px;
+      }
+    }
+    .status-claimed-progress {
+      &:after {
+        display: inline-block;
+        content: '-';
+        margin-right: 10px;
+      }
+    }
+    .status-receipted-done {
+      &:after {
+        display: inline-block;
+        content: 'o';
+      }
+    }
+    .status-receipted-progress {
+      &:after {
+        display: inline-block;
+        content: '-';
+      }
+    }
+  }
+  .timestamp {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    float: right;
+    width: 50%;
+    text-align: right;
+    color: #999;
+    .updated {
+      display: block;
+      float: left;
+      width: 50%;
+      text-align: right;
+    }
+    .created {
+      display: block;
+      float: right;
+      width: 50%;
+      text-align: right;
     }
   }
 }

@@ -1,6 +1,7 @@
 Proton::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :works,    only: [:show, :new, :create, :edit, :update, :destroy]
 
   root 'static_pages#home'
   match '/signup' , to: 'users#new'         , via: 'get'

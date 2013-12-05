@@ -1,11 +1,26 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
+  <aside class="col-md-3">
     <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
+      <header>
+        <h1>
+          <%= gravatar_for @user %>
+          <%= @user.name %>
+        </h1>
+      </header>
+      <div class="create-work-link">
+        <%= link_to 'Create work', new_work_path, class: 'btn btn-large btn-primary' %>
+      </div>
     </section>
   </aside>
+  <div class="col-md-9">
+    <% if @user.works.any? %>
+      <h2 class="works-title">Works (<%= @user.works.count %>)</h2>
+      <%= will_paginate @works %>
+      <ol class="works">
+        <%= render @works %>
+      </ol>
+      <%= will_paginate @works %>
+    <% end %>
+  </div>
 </div>

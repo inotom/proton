@@ -17,6 +17,7 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
+  it { should respond_to(:works) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -112,5 +113,29 @@ describe User do
   describe "remember token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
+  end
+
+  describe "work assosiations" do
+
+    before { @user.save }
+    let!(:older_work) do
+      FactoryGirl.create(:work, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_work) do
+      FactoryGirl.create(:work, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right works in the right order" do
+      expect(@user.works.to_a).to eq [newer_work, older_work]
+    end
+
+    it "should destroy associated works" do
+      works = @user.works.to_a
+      @user.destroy
+      expect(works).not_to be_empty
+      works.each do |work|
+        expect(Work.where(id: work.id)).to be_empty
+      end
+    end
   end
 end

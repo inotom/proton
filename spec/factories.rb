@@ -9,4 +9,12 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :work do
+    title "New Work"
+    payment 100.0
+    other "Lerem ipsum"
+    orderer_id 0
+    user
+  end
 end

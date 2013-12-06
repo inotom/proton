@@ -17,4 +17,9 @@ FactoryGirl.define do
     orderer_id 0
     user
   end
+
+  factory :orderer do
+    name "New Orderer"
+    user
+  end
 end

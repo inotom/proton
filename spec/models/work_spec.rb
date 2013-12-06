@@ -3,11 +3,12 @@ require 'spec_helper'
 describe Work do
 
   let(:user) { FactoryGirl.create(:user) }
+  let(:orderer) { FactoryGirl.create(:orderer) }
   before { @work = user.works.new(title: 'New Work',
                                   payment: 100.0,
                                   other: 'Lerem ipsum',
                                   user_id: user.id,
-                                  orderer_id: 0) }
+                                  orderer_id: orderer.id) }
 
   subject { @work }
 
@@ -22,6 +23,10 @@ describe Work do
 
   it { should respond_to(:user) }
   its(:user) { should eq user }
+
+  # TODO delete
+  #it { should respond_to(:orderer) }
+  #its(:orderer) { should eq orderer }
 
   it { should be_valid }
 

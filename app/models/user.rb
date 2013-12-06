@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :works, dependent: :destroy
+  has_many :orderers
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 

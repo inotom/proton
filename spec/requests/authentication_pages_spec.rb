@@ -67,7 +67,8 @@ describe 'AuthenticationPages' do
           sign_in user
           visit new_user_path
         end
-        it { should have_content('Welcome to the Proton') }
+        it { should have_link('Create work', href: new_work_path) }
+        it { should_not have_content('Welcome to the Proton') }
       end
 
       describe 'submitting a CREATE request to the User#create action' do

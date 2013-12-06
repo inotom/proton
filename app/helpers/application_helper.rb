@@ -17,4 +17,12 @@ module ApplicationHelper
       "progress"
     end
   end
+
+  def work_status_string(status)
+    if status
+      "o"
+    else
+      "-"
+    end
+  end
 end

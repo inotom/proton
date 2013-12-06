@@ -1,7 +1,9 @@
 class WorksController < ApplicationController
   before_action :signed_in_user
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
 
   def show
+    @work = Work.find(params[:id])
   end
 
   def new
@@ -12,7 +14,7 @@ class WorksController < ApplicationController
     @work = current_user.works.build(work_params)
     if @work.save
       flash[:success] = "Work created!"
-      redirect_to current_user
+      redirect_to root_path
     else
       render 'new'
     end
@@ -22,9 +24,17 @@ class WorksController < ApplicationController
   end
 
   def update
+    if @work.update_attributes(work_params)
+      flash[:success] = "Work updated!"
+      redirect_to work_path(@work)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @work.destroy
+    redirect_to root_path
   end
 
   private
@@ -32,5 +42,10 @@ class WorksController < ApplicationController
     def work_params
       params.require(:work).permit(:title, :payment, :other, :finished,
                                    :claimed, :receipted, :orderer_id)
+    end
+
+    def correct_user
+      @work = current_user.works.find_by(id: params[:id])
+      redirect_to(root_path) if @work.nil?
     end
 end

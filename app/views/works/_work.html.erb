@@ -1,5 +1,5 @@
 <li class="work-<%= work_status_class(work.finished) %>">
-  <h3 class="work-title"><%= work.title %></h3>
+  <h3 class="work-title"><%= link_to work.title, work_path(work) %></h3>
   <div class="work-info">
     <span class="status-info">
       <span class="status-claimed-<%= work_status_class(work.claimed) %>">claimed:</span>

@@ -1,0 +1,12 @@
+<header>
+  <h1>
+    <%= gravatar_for @user %>
+    <%= @user.name %>
+  </h1>
+</header>
+<% if current_user?(@user) %>
+<div class="create-work-link">
+  <%= link_to 'Create work', new_work_path, class: 'btn btn-large btn-primary' %>
+</div>
+<% end %>
+

@@ -55,8 +55,7 @@ describe "User Pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    let!(:work1) { FactoryGirl.create(:work, user: user, title: 'New Work1') }
-    let!(:work2) { FactoryGirl.create(:work, user: user, title: 'New Work2') }
+    let(:another_user) { FactoryGirl.create(:user, email: 'another@example.com') }
 
     before do
       sign_in user
@@ -65,12 +64,13 @@ describe "User Pages" do
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+    it { should have_content('Create work') }
 
-    describe "works" do
-      it { should have_content(work1.title) }
-      it { should have_content(work2.title) }
-      it { should have_content(user.works.count) }
-      it { should have_link('Create work', href: new_work_path) }
+    describe "another user profile page" do
+      before { visit user_path(another_user) }
+      it { should have_content(another_user.name) }
+      it { should have_title(another_user.name) }
+      it { should_not have_content('Create work') }
     end
   end
 

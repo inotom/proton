@@ -1,0 +1,21 @@
+<%= render 'shared/error_messages', object: f.object %>
+<%= f.label :title %>
+<%= f.text_field :title, class: 'form-control' %>
+
+<%= f.label :payment %>
+<%= f.text_field :payment, class: 'form-control' %>
+
+<%= f.label :other %>
+<%= f.text_area :other, class: 'form-control' %>
+
+<%= f.label :finished %>
+<%= f.check_box :finished, class: 'form-control' %>
+
+<%= f.label :claimed %>
+<%= f.check_box :claimed, class: 'form-control' %>
+
+<%= f.label :receipted %>
+<%= f.check_box :receipted, class: 'form-control' %>
+
+<%= f.label :orderer_id %>
+<%= f.text_field :orderer_id, class: 'form-control' %>

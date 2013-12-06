@@ -1,0 +1,8 @@
+<% if @works.any? %>
+  <h2 class="works-title">Works (<%= @works.count %>)</h2>
+  <%= will_paginate @works %>
+  <ol class="works">
+    <%= render @works %>
+  </ol>
+  <%= will_paginate @works %>
+<% end %>

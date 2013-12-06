@@ -16,6 +16,24 @@ describe "Static Pages" do
 
     it_should_behave_like "all static pages"
     it { should_not have_title('Home - ') }
+
+    describe "sign in" do
+      let(:user) { FactoryGirl.create(:user) }
+      let!(:work1) { FactoryGirl.create(:work, user: user, title: 'New Work1') }
+      let!(:work2) { FactoryGirl.create(:work, user: user, title: 'New Work2') }
+
+      before do
+        sign_in user
+        visit root_path
+      end
+
+      describe "works" do
+        it { should have_content(work1.title) }
+        it { should have_content(work2.title) }
+        it { should have_content(user.works.count) }
+        it { should have_link('Create work', href: new_work_path) }
+      end
+    end
   end
 
   describe "Help page" do

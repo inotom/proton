@@ -65,9 +65,9 @@ describe "Work pages" do
       it { should have_content(work.title) }
       it { should have_content(work.payment) }
       it { should have_content(work.other) }
-      it { should have_selector("span.claimed-status-done") }
-      it { should have_selector("span.receipted-status-progress") }
-      it { should have_selector("span.finished-status-progress") }
+      it { should have_selector("span.status-claimed-done") }
+      it { should have_selector("span.status-receipted-progress") }
+      it { should have_selector("span.status-finished-progress") }
       it { should have_link('Back', root_path) }
       it { should have_link('Edit', edit_work_path(work)) }
       it { should have_link('Delete') }

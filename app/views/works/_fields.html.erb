@@ -6,16 +6,22 @@
 <%= f.text_field :payment, class: 'form-control' %>
 
 <%= f.label :other %>
-<%= f.text_area :other, class: 'form-control' %>
+<%= f.text_area :other, rows: 5, class: 'form-control' %>
 
-<%= f.label :finished %>
-<%= f.check_box :finished, class: 'form-control' %>
+<div class="checkbox-container">
+  <%= f.check_box :finished, class: 'form-control' %>
+  <%= f.label :finished %>
+</div>
 
-<%= f.label :claimed %>
-<%= f.check_box :claimed, class: 'form-control' %>
+<div class="checkbox-container">
+  <%= f.check_box :claimed, class: 'form-control' %>
+  <%= f.label :claimed %>
+</div>
 
-<%= f.label :receipted %>
-<%= f.check_box :receipted, class: 'form-control' %>
+<div class="checkbox-container">
+  <%= f.check_box :receipted, class: 'form-control' %>
+  <%= f.label :receipted %>
+</div>
 
 <%= f.label :orderer_id %>
 <%= f.text_field :orderer_id, class: 'form-control' %>

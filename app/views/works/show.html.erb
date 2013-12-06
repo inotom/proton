@@ -1,7 +1,7 @@
 <% provide(:title, @work.title) %>
 <h1 class="work-title"><%= @work.title %></h1>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-8 col-md-offset-2">
     <dl class="work-info">
       <dt>payment</dt>
       <dd><%= @work.payment %></dd>
@@ -9,16 +9,18 @@
       <dd><%= @work.other %></dd>
       <dt>status</dt>
       <dd>
-        <span class="claimed-status-<%= work_status_class(@work.claimed) %>">claimed: <%= work_status_string(@work.claimed) %></span>
-        <span class="receipted-status-<%= work_status_class(@work.receipted) %>">receipted: <%= work_status_string(@work.receipted) %></span>
-        <span class="finished-status-<%= work_status_class(@work.finished) %>">finished: <%= work_status_string(@work.finished) %></span>
+        <span class="status-claimed-<%= work_status_class(@work.claimed) %>">claimed:</span>
+        <span class="status-receipted-<%= work_status_class(@work.receipted) %>">receipted:</span>
+        <span class="status-finished-<%= work_status_class(@work.finished) %>">finished:</span>
       </dd>
     </dl>
     <div class="tools">
-      <%= link_to 'Back', root_path %>
       <%= link_to 'Edit', edit_work_path(@work) %>
       <%= link_to 'Delete', @work, method: :delete,
                             data: { confirm: "You sure?" } %>
+    </div>
+    <div class="work-page-nav">
+      <%= link_to 'Back', root_path %>
     </div>
   </div>
 </div>

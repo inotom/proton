@@ -4,11 +4,10 @@ describe Work do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:orderer) { FactoryGirl.create(:orderer) }
-  before { @work = user.works.new(title: 'New Work',
-                                  payment: 100.0,
-                                  other: 'Lerem ipsum',
-                                  user_id: user.id,
-                                  orderer_id: orderer.id) }
+  before { @work = user.works.build(title: 'New Work',
+                                    payment: 100.0,
+                                    other: 'Lerem ipsum',
+                                    orderer_id: orderer.id) }
 
   subject { @work }
 

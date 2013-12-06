@@ -1,0 +1,24 @@
+<% provide(:title, 'Orderers') %>
+<h1 class="orderers-index-title">Orderers</h1>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="create-orderer-link">
+      <%= form_for(@orderer) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="field">
+          <%= f.text_field :name, class: 'form-control', placeholder: 'Orderer name ...' %>
+        </div>
+        <%= f.submit 'Create Orderer', class: 'btn btn-large btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <ul class="orderers-list">
+      <%= render @orderers %>
+    </ul>
+    <div class="orderers-page-nav">
+      <%= link_to 'Back', root_path %>
+    </div>
+  </div>
+</div>

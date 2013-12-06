@@ -16,7 +16,7 @@ namespace :db do
                    password_confirmation: password)
     end
 
-    users = User.all(limit: 6)
+    users = User.all(limit: 2)
     50.times do |n|
       title = "Work Title #{n}"
       other = Faker::Lorem.sentence(5)
@@ -25,6 +25,10 @@ namespace :db do
                                              other: other,
                                              user: user,
                                              orderer_id: 0) }
+    end
+    5.times do |n|
+      name = "Orderer Name #{n}"
+      users.each { |user| user.orderers.create!(name: name, user: user) }
     end
   end
 end

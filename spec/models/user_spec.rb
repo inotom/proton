@@ -139,4 +139,21 @@ describe User do
       end
     end
   end
+
+  describe "orderer associations" do
+
+    before { @user.save }
+    let!(:orderer) do
+      FactoryGirl.create(:orderer, user: @user)
+    end
+
+    it "should destroy associated orderer" do
+      orderers = @user.orderers.to_a
+      @user.destroy
+      expect(orderers).not_to be_empty
+      orderers.each do |odrr|
+        expect(Orderer.where(id: odrr.id)).to be_empty
+      end
+    end
+  end
 end

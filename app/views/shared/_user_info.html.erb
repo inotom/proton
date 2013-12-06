@@ -5,8 +5,10 @@
   </h1>
 </header>
 <% if current_user?(@user) %>
-<div class="create-work-link">
-  <%= link_to 'Create work', new_work_path, class: 'btn btn-large btn-primary' %>
-</div>
+  <div class="create-work-link">
+    <%= link_to 'Create work', new_work_path, class: 'btn btn-large btn-primary' %>
+  </div>
+  <div class="orderers-link">
+    <%= link_to 'Orderers', orderers_path, class: 'btn btn-large btn-primary' %>
+  </div>
 <% end %>
-

@@ -33,9 +33,11 @@ describe 'AuthenticationPages' do
 
     describe 'with valid information' do
       let(:user) { FactoryGirl.create(:user) }
+      let!(:work) { FactoryGirl.create(:work, user: user, title: 'User Work1') }
       before { sign_in user }
 
-      it { should have_title(user.name) }
+      it { should have_title(full_title('Works')) }
+      it { should have_content(work.title) }
       it { should have_link('Profile'    , href: user_path(user)) }
       it { should have_link('Settings'   , href: edit_user_path(user)) }
       it { should have_link('Sign out'   , href: signout_path) }
@@ -106,8 +108,8 @@ describe 'AuthenticationPages' do
               click_button 'Sign in'
             end
 
-            it 'should render the default (profile) page' do
-              expect(page).to have_title(user.name)
+            it 'should render the default page' do
+              expect(page).to have_title(full_title('Works'))
             end
           end
         end
@@ -146,6 +148,19 @@ describe 'AuthenticationPages' do
           specify { expect(response).to redirect_to(signin_path) }
         end
 
+      end
+
+      describe 'in the Orderers controller' do
+
+        describe 'submitting to the create action' do
+          before { post orderers_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe 'submitting to the destroy action' do
+          before { delete orderer_path(FactoryGirl.create(:orderer)) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
       end
 
       describe 'in the Users contoroller' do

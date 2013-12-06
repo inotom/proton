@@ -16,6 +16,7 @@ describe "Static Pages" do
 
     it_should_behave_like "all static pages"
     it { should_not have_title('Home - ') }
+    it { should_not have_link('Orderers', orderers_path) }
 
     describe "sign in" do
       let(:user) { FactoryGirl.create(:user) }
@@ -32,6 +33,7 @@ describe "Static Pages" do
         it { should have_content(work2.title) }
         it { should have_content(user.works.count) }
         it { should have_link('Create work', href: new_work_path) }
+        it { should have_link('Orderers', orderers_path) }
       end
     end
   end

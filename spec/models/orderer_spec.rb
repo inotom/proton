@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Orderer do
 
   let(:user) { FactoryGirl.create(:user) }
-  before { @orderer = user.orderers.new(name: 'Orderer Name', user_id: user.id) }
+  before { @orderer = user.orderers.build(name: 'Orderer Name') }
 
   subject { @orderer }
 
@@ -16,6 +16,16 @@ describe Orderer do
 
   describe "when user_id is not present" do
     before { @orderer.user_id = nil }
+    it { should_not be_valid }
+  end
+
+  describe "with blank name" do
+    before { @orderer.name = '' }
+    it { should_not be_valid }
+  end
+
+  describe "with name is too long" do
+    before { @orderer.name = 'a' * 256 }
     it { should_not be_valid }
   end
 end

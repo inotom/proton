@@ -1,8 +1,12 @@
 <li class="work-<%= work_status_class(work.finished) %>">
   <h3 class="work-title"><%= link_to work.title, work_path(work) %></h3>
-  <div class="orderer-name">
+  <div class="orderer-name-box">
     <% orderer = @orderers.find_by(id: work.orderer_id) %>
-    <%= orderer.name if orderer %>
+    <% if orderer %>
+      <span class="orderer orderer-<%= orderer.id % 5 %>">
+        <%= orderer.name %>
+      </span>
+    <% end %>
   </div>
   <div class="work-info">
     <span class="status-info">

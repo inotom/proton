@@ -266,7 +266,7 @@ input {
   opacity: 1;
 }
 .work-title {
-  margin: 5px 0;
+  margin: 5px 0 10px;
   font-size: 20px;
   letter-spacing: 0;
 }
@@ -348,6 +348,19 @@ input {
   input[type="checkbox"].form-control {
     display: inline;
     width: auto;
+  }
+}
+$ordererColors: #ccf #cff #cfc #ffc #fcc;
+.orderer-name-box {
+  .orderer {
+    padding: 3px 6px;
+    border-radius: 3px;
+    text-shadow: rgba(255, 255, 255, .7) 0 1px 0;
+  }
+  @for $i from 0 through 4 {
+    .orderer-#{$i} {
+      background-color: nth($ordererColors, $i+1);
+    }
   }
 }
 /* }}} */

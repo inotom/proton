@@ -16,11 +16,15 @@ describe "Orderer pages" do
     it { should have_content('Orderers') }
     it { should have_button('Create Orderer') }
     it { should have_link('Back', root_path) }
+    it { should have_selector("h2.orderer.orderer-" + (o1.id % 5).to_s) }
+    it { should have_selector("h2.orderer.orderer-" + (o2.id % 5).to_s) }
 
     describe "orderers" do
       it { should have_content(o1.name) }
       it { should have_content(o2.name) }
       it { should have_link('Delete') }
+      it { should have_link('Edit', edit_orderer_path(o1)) }
+      it { should have_link('Edit', edit_orderer_path(o2)) }
     end
 
     describe "should not show another user orderers" do
@@ -56,6 +60,36 @@ describe "Orderer pages" do
       it "should create a orderer" do
         expect { click_button 'Create Orderer' }.to change(Orderer, :count).by(1)
       end
+    end
+  end
+
+  describe "orderer edit" do
+    let!(:orderer) { FactoryGirl.create(:orderer, user: user, name: 'Orderer') }
+    before { visit edit_orderer_path(orderer) }
+
+    describe "page" do
+      it { should have_title('Edit orderer') }
+      it { should have_content("Update orderer \"#{orderer.name}\"") }
+      it { should have_link('Back', orderers_path) }
+    end
+
+    describe "with invalid information" do
+      before do
+        fill_in 'orderer_name', with: ''
+        click_button 'Update orderer'
+      end
+
+      it { should have_content('error') }
+    end
+
+    describe "with valid information" do
+      before do
+        fill_in 'orderer_name', with: 'Updated Orderer Name'
+        click_button 'Update orderer'
+      end
+
+      it { should have_content('Orderer updated!') }
+      it { should have_content('Updated Orderer Name') }
     end
   end
 

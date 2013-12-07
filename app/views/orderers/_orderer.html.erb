@@ -1,6 +1,7 @@
 <li>
-  <h2><%= orderer.name %></h2>
+  <h2 class="orderer orderer-<%= orderer.id % 5 %>"><%= orderer.name %></h2>
   <div class="tools">
+    <%= link_to 'Edit', edit_orderer_path(orderer) %>
     <%= link_to 'Delete', orderer, method: :delete,
                                    data: { confirm: "You sure?" },
                                    title: orderer.name %>

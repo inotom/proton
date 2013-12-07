@@ -63,6 +63,8 @@ describe "Work pages" do
             click_button 'Create work'
           end
 
+          it { should have_selector("span.orderer.orderer-" + (o1.id % 5).to_s) }
+
           it "should have orderer name in works index page" do
             expect(page).to have_content('Orderer1')
           end

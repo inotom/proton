@@ -351,16 +351,16 @@ input {
   }
 }
 $ordererColors: #ccf #cff #cfc #ffc #fcc;
+@for $i from 0 through 4 {
+  .orderer-#{$i} {
+    background-color: nth($ordererColors, $i+1);
+  }
+}
 .orderer-name-box {
   .orderer {
     padding: 3px 6px;
     border-radius: 3px;
     text-shadow: rgba(255, 255, 255, .7) 0 1px 0;
-  }
-  @for $i from 0 through 4 {
-    .orderer-#{$i} {
-      background-color: nth($ordererColors, $i+1);
-    }
   }
 }
 /* }}} */
@@ -382,10 +382,14 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
     margin: 0 0 20px;
     padding: 0 0 10px;
     border-bottom: 1px solid $grayLighter;
-    h2 {
+    .orderer {
+      display: inline-block;
       margin: 0 0 5px;
-      color: #000;
+      padding: 6px 9px;
       text-align: left;
+      color: #000;
+      text-shadow: rgba(255, 255, 255, .7) 0 1px 0;
+      border-radius: 6px;
     }
     .tools {
       text-align: right;

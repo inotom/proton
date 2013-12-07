@@ -1,6 +1,6 @@
 class OrderersController < ApplicationController
   before_action :signed_in_user
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @orderers = current_user.orderers
@@ -17,6 +17,18 @@ class OrderersController < ApplicationController
     else
       @orderers = current_user.orderers.reject { |odr| odr.id.nil? }
       render 'orderers/index'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @orderer.update_attributes(orderer_params)
+      flash[:success] = "Orderer updated!"
+      redirect_to orderers_path
+    else
+      render 'edit'
     end
   end
 

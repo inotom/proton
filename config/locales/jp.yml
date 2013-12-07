@@ -1,8 +1,0 @@
-jp:
-  number:
-    currency:
-      format:
-        unit: "円"
-        format: "%n%u"
-        nagative_format: "-%n%u"
-        precision: 0

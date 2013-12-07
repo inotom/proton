@@ -10,15 +10,15 @@
   </div>
   <div class="work-info">
     <span class="status-info">
-      <span class="status-claimed-<%= work_status_class(work.claimed) %>">claimed:</span>
-      <span class="status-receipted-<%= work_status_class(work.receipted) %>">receipted:</span>
+      <span class="status-claimed-<%= work_status_class(work.claimed) %>"><%= t 'view.claimed' %>:</span>
+      <span class="status-receipted-<%= work_status_class(work.receipted) %>"><%= t 'view.receipted' %>:</span>
     </span>
     <span class="timestamp">
       <span class="updated">
-        Updated <%= time_ago_in_words(work.updated_at) %> ago.
+        <%= t 'view.updated' %> <%= time_ago_in_words(work.updated_at) %> <%= t 'view.ago' %>.
       </span>
       <span class="created">
-        Created <%= time_ago_in_words(work.created_at) %> ago.
+        <%= t 'view.created' %> <%= time_ago_in_words(work.created_at) %> <%= t 'view.ago' %>.
       </span>
     </span>
   </div>

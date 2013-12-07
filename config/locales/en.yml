@@ -23,7 +23,19 @@ en:
   number:
     currency:
       format:
-        unit: "US$"
+        unit: US$
         format: "%u%n"
         nagative_format: "%u-%n"
         precision: 1
+  view:
+    ago: ago
+    updated: Updated
+    created: Created
+    claimed: claimed
+    receipted: receipted
+    finished: finished
+    orderer: orderer
+    payment: payment
+    other: other
+    status: status
+    password_confirmation: Confirm Password

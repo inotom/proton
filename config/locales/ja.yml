@@ -1,0 +1,54 @@
+ja:
+  number:
+    currency:
+      format:
+        unit: 円
+        format: "%n%u"
+        nagative_format: "-%n%u"
+        precision: 0
+  datetime:
+    distance_in_words:
+      half_a_minute: 30秒前後
+      less_than_x_seconds:
+        one: 1秒
+      about_x_hours: "約%{count}時間"
+  activerecord:
+    errors:
+      models:
+        orderer:
+          attributes:
+            name:
+              blank: は必須項目です
+        work:
+          attributes:
+            title:
+              blank: は必須項目です
+    models:
+      user: ユーザー
+      orderer: 発注者
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+      work:
+        title: 作業名
+        payment: 金額
+        other: 備考
+        finished: 完了
+        claimed: 請求済
+        receipted: 受領済
+      orderer:
+        name: 発注者名
+  view:
+    ago: 前
+    updated: 更新
+    created: 作成
+    claimed: 請求済
+    receipted: 受領済
+    finished: 完了
+    orderer: 発注者
+    payment: 金額
+    other: 備考
+    status: 状態
+    password_confirmation: パスワード確認

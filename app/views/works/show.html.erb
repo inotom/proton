@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-4">
     <dl class="work-info">
-      <dt>orderer</dt>
+      <dt><%= t 'view.orderer' %></dt>
       <dd>
         <% if @orderer %>
           <span class="orderer orderer-<%= @orderer.id % 5 %>">
@@ -13,15 +13,15 @@
           <span class="alert-undefined">Undefined</span>
         <% end %>
       </dd>
-      <dt>payment</dt>
-      <dd><%= number_to_currency(@work.payment, locale: 'en') %></dd>
-      <dt>other</dt>
+      <dt><%= t 'view.payment' %></dt>
+      <dd><%= number_to_currency(@work.payment) %></dd>
+      <dt><%= t 'view.other' %></dt>
       <dd><%= @work.other %></dd>
-      <dt>status</dt>
+      <dt><%= t 'view.status' %></dt>
       <dd>
-        <span class="status-claimed-<%= work_status_class(@work.claimed) %>">claimed:</span>
-        <span class="status-receipted-<%= work_status_class(@work.receipted) %>">receipted:</span>
-        <span class="status-finished-<%= work_status_class(@work.finished) %>">finished:</span>
+        <span class="status-claimed-<%= work_status_class(@work.claimed) %>"><%= t 'view.claimed' %>:</span>
+        <span class="status-receipted-<%= work_status_class(@work.receipted) %>"><%= t 'view.receipted' %>:</span>
+        <span class="status-finished-<%= work_status_class(@work.finished) %>"><%= t 'view.finished' %>:</span>
       </dd>
     </dl>
     <div class="tools">

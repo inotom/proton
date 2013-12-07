@@ -3,8 +3,8 @@ class OrderersController < ApplicationController
   before_action :correct_user, only: [:destroy]
 
   def index
-    @orderers = current_user.orderers.load
-    @orderer = current_user.orderers.build
+    @orderers = current_user.orderers
+    @orderer = current_user.orderers.build if signed_in?
   end
 
   def new
@@ -16,7 +16,7 @@ class OrderersController < ApplicationController
       flash[:success] = 'Orderer created!'
       redirect_to orderers_path
     else
-      @orderers = current_user.orderers.load
+      @orderers = current_user.orderers
       render 'orderers/index'
     end
   end

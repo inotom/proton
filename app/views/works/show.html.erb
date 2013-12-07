@@ -4,7 +4,7 @@
   <div class="col-md-8 col-md-offset-2">
     <dl class="work-info">
       <dt>payment</dt>
-      <dd><%= @work.payment %></dd>
+      <dd><%= number_to_currency(@work.payment, unit: 'US$') %></dd>
       <dt>other</dt>
       <dd><%= @work.other %></dd>
       <dt>status</dt>

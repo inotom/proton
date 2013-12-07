@@ -4,12 +4,14 @@
 <div class="row">
   <div class="col-md-3">
     <div class="create-orderer-link">
-      <%= form_for(@orderer) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+      <%= form_tag orderers_path do %>
+        <% if @orderer && @orderer.errors.any? %>
+          <%= render 'shared/error_messages', object: @orderer %>
+        <% end %>
         <div class="field">
-          <%= f.text_field :name, class: 'form-control', placeholder: 'Orderer name ...' %>
+          <%= text_field_tag 'orderer[name]', '', params: :name, class: 'form-control', placeholder: 'Orderer name...' %>
         </div>
-        <%= f.submit 'Create Orderer', class: 'btn btn-large btn-primary' %>
+        <%= submit_tag 'Create Orderer', class: 'btn btn-large btn-primary' %>
       <% end %>
     </div>
   </div>

@@ -4,10 +4,12 @@ class WorksController < ApplicationController
 
   def show
     @work = Work.find(params[:id])
+    @orderer = current_user.orderers.find_by(id: @work.orderer_id) if signed_in?
   end
 
   def new
     @work = Work.new
+    @orderers = current_user.orderers
   end
 
   def create
@@ -21,6 +23,7 @@ class WorksController < ApplicationController
   end
 
   def edit
+    @orderers = current_user.orderers
   end
 
   def update

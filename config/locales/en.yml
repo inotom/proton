@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  number:
+    currency:
+      format:
+        unit: "US$"
+        format: "%u%n"
+        nagative_format: "%u-%n"
+        precision: 1

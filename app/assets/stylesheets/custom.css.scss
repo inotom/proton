@@ -18,6 +18,10 @@ $grayLighter: #ccc;
   }
   @include box_sizing;
 }
+.alert-undefined {
+  color: red;
+  font-style: italic;
+}
 /* }}} */
 
 /* universal {{{ */

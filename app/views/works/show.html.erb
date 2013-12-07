@@ -3,8 +3,16 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <dl class="work-info">
+      <dt>orderer</dt>
+      <dd>
+        <% if @orderer %>
+          <%= @orderer.name %>
+        <% else %>
+          <span class="alert-undefined">Undefined</span>
+        <% end %>
+      </dd>
       <dt>payment</dt>
-      <dd><%= number_to_currency(@work.payment, unit: 'US$') %></dd>
+      <dd><%= number_to_currency(@work.payment, locale: 'en') %></dd>
       <dt>other</dt>
       <dd><%= @work.other %></dd>
       <dt>status</dt>

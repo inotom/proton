@@ -24,4 +24,9 @@
 </div>
 
 <%= f.label :orderer_id %>
-<%= f.text_field :orderer_id, class: 'form-control' %>
+<% if @orderers %>
+  <%= f.collection_select :orderer_id, @orderers, :id, :name, { include_blank: true }, { class: 'form-control' } %>
+<% else %>
+  <p>You must create a Orderer, to select one.</p>
+  <%= f.hidden_field :orderer_id %>
+<% end %>

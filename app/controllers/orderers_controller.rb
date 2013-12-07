@@ -4,7 +4,6 @@ class OrderersController < ApplicationController
 
   def index
     @orderers = current_user.orderers
-    @orderer = current_user.orderers.build if signed_in?
   end
 
   def new
@@ -16,7 +15,7 @@ class OrderersController < ApplicationController
       flash[:success] = 'Orderer created!'
       redirect_to orderers_path
     else
-      @orderers = current_user.orderers
+      @orderers = current_user.orderers.reject { |odr| odr.id.nil? }
       render 'orderers/index'
     end
   end

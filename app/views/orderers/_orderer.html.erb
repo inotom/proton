@@ -1,10 +1,8 @@
-<% if orderer.id  %>
-  <li>
-    <h2><%= orderer.name %></h2>
-    <div class="tools">
-      <%= link_to 'Delete', orderer, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: orderer.name %>
-    </div>
-  </li>
-<% end %>
+<li>
+  <h2><%= orderer.name %></h2>
+  <div class="tools">
+    <%= link_to 'Delete', orderer, method: :delete,
+                                   data: { confirm: "You sure?" },
+                                   title: orderer.name %>
+  </div>
+</li>

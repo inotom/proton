@@ -72,6 +72,8 @@ describe "Work pages" do
           describe "in work show page" do
             before { click_link 'New work title' }
 
+            it { should have_selector("span.orderer.orderer-" + (o1.id % 5).to_s) }
+
             it "should have orderer name in work show page" do
               expect(page).to have_content('Orderer1')
             end

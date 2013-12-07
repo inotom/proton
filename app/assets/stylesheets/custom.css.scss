@@ -307,6 +307,17 @@ input {
 .work-info {
   position: relative;
   overflow: hidden;
+  dt {
+    margin: 0 0 5px;
+  }
+  dd {
+    margin: 0 0 10px;
+  }
+  .orderer {
+    padding: 3px 6px;
+    border-radius: 6px;
+    text-shadow: rgba(255, 255, 255, .7) 0 1px 0;
+  }
   .status-info {
     text-align: right;
     display: block;
@@ -337,7 +348,7 @@ input {
 }
 .work-page-nav {
   margin: 20px 0;
-  text-align: right;
+  text-align: center;
 }
 .checkbox-container {
   margin: 0 0 10px;
@@ -400,6 +411,6 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
   }
 }
 .orderers-page-nav {
-  text-align: right;
+  text-align: center;
 }
 /* }}} */

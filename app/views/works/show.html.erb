@@ -1,12 +1,14 @@
 <% provide(:title, @work.title) %>
 <h1 class="work-title"><%= @work.title %></h1>
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-4">
     <dl class="work-info">
       <dt>orderer</dt>
       <dd>
         <% if @orderer %>
-          <%= @orderer.name %>
+          <span class="orderer orderer-<%= @orderer.id % 5 %>">
+            <%= @orderer.name %>
+          </span>
         <% else %>
           <span class="alert-undefined">Undefined</span>
         <% end %>
@@ -27,8 +29,10 @@
       <%= link_to 'Delete', @work, method: :delete,
                             data: { confirm: "You sure?" } %>
     </div>
-    <div class="work-page-nav">
-      <%= link_to 'Back', root_path %>
-    </div>
   </div>
+  <div class="col-md-8">
+  </div>
+</div>
+<div class="work-page-nav">
+  <%= link_to 'Back', root_path %>
 </div>

@@ -16,7 +16,7 @@
       <dt><%= t 'view.payment' %></dt>
       <dd><%= number_to_currency(@work.payment) %></dd>
       <dt><%= t 'view.other' %></dt>
-      <dd><%= @work.other %></dd>
+      <dd><%= simple_format(@work.other) %></dd>
       <dt><%= t 'view.status' %></dt>
       <dd>
         <span class="status-claimed-<%= work_status_class(@work.claimed) %>"><%= t 'view.claimed' %>:</span>

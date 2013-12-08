@@ -316,6 +316,10 @@ input {
   }
   dd {
     margin: 0 0 10px;
+    p {
+      font-size: inherit;
+      line-height: inherit;
+    }
   }
   .orderer {
     padding: 3px 6px;

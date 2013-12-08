@@ -8,11 +8,15 @@ describe "Work pages" do
   before { sign_in user }
 
   describe "work creation" do
+    let!(:o1) { FactoryGirl.create(:orderer, user: user, name: 'Orderer1') }
+    let!(:o2) { FactoryGirl.create(:orderer, user: user, name: 'Orderer2') }
     before { visit new_work_path }
 
     it { should have_content('Create work') }
     it { should have_title(full_title('Create work')) }
     it { should have_link('Back', root_path) }
+    it { should have_selector("select#work_orderer_id > option",
+                              count: user.orderers.size + 1) }
 
     describe "with invalid information" do
 
@@ -26,6 +30,8 @@ describe "Work pages" do
           click_button 'Create work'
         end
         it { should have_content('error') }
+        it { should have_selector("select#work_orderer_id > option",
+                                  count: user.orderers.size + 1) }
       end
     end
 
@@ -112,12 +118,18 @@ describe "Work pages" do
 
   describe "work edit" do
     let(:work) { FactoryGirl.create(:work, user: user) }
+    let!(:o1) { FactoryGirl.create(:orderer, user: user, name: 'Orderer1') }
+    let!(:o2) { FactoryGirl.create(:orderer, user: user, name: 'Orderer2') }
+
+
 
     describe "page" do
       before { visit edit_work_path(work) }
       it { should have_title("Edit work") }
       it { should have_button("Update work") }
       it { should have_link('Back', work_path(work)) }
+      it { should have_selector("select#work_orderer_id > option",
+                                count: user.orderers.size + 1) }
 
       describe "with invalid information" do
         before do
@@ -126,6 +138,8 @@ describe "Work pages" do
           click_button 'Update work'
         end
         it { should have_content('error') }
+        it { should have_selector("select#work_orderer_id > option",
+                                  count: user.orderers.size + 1) }
       end
 
       describe "with valid information" do

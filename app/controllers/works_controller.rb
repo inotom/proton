@@ -18,6 +18,7 @@ class WorksController < ApplicationController
       flash[:success] = "Work created!"
       redirect_to root_path
     else
+      @orderers = current_user.orderers
       render 'new'
     end
   end
@@ -31,6 +32,7 @@ class WorksController < ApplicationController
       flash[:success] = "Work updated!"
       redirect_to work_path(@work)
     else
+      @orderers = current_user.orderers
       render 'edit'
     end
   end

@@ -9,19 +9,47 @@ ja:
   datetime:
     distance_in_words:
       half_a_minute: 30秒前後
+      less_than_x_seconds: "%{count}秒"
       less_than_x_seconds:
         one: 1秒
+      x_seconds: "%{count}秒"
+      less_than_x_minutes: "%{count}分"
+      less_than_x_minutes:
+        one: 1分
+      x_minutes: "%{count}分"
       about_x_hours: "約%{count}時間"
+      x_days: "%{count}日"
+      about_x_month: "約%{count}ヶ月"
+      x_month: "%{count}ヶ月"
+      about_x_years: "約%{count}年"
+      over_x_years: "%{count}年以上"
   activerecord:
     errors:
       models:
+        user:
+          attributes:
+            password:
+              blank: は必須項目です
+              too_short: は6文字以上必要です
+            password_confirmation:
+              confirmation: が一致しません
+              blank: は必須項目です
+            email:
+              invalid: が不正です
+              blank: は必須項目です
+              taken: は同じものが既に使用されています
+            name:
+              too_long: は50文字以内で作成してください
+              blank: は必須項目です
         orderer:
           attributes:
             name:
+              too_long: は255文字以内で作成してください
               blank: は必須項目です
         work:
           attributes:
             title:
+              too_long: は255文字以内で作成してください
               blank: は必須項目です
     models:
       user: ユーザー
@@ -31,6 +59,7 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード確認
       work:
         title: 作業名
         payment: 金額
@@ -38,6 +67,7 @@ ja:
         finished: 完了
         claimed: 請求済
         receipted: 受領済
+        orderer_id: 発注者
       orderer:
         name: 発注者名
   view:
@@ -52,3 +82,6 @@ ja:
     other: 備考
     status: 状態
     password_confirmation: パスワード確認
+  will_paginate:
+    next_label: 次へ
+    previous_label: 前へ

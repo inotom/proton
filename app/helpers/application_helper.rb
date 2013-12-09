@@ -25,4 +25,8 @@ module ApplicationHelper
       "-"
     end
   end
+
+  def worktime_fmt(time)
+    time.strftime('%d %b %Y %H:%M:%S')
+  end
 end

@@ -151,14 +151,42 @@ describe 'AuthenticationPages' do
       end
 
       describe 'in the Orderers controller' do
+        let(:orderer) { FactoryGirl.create(:orderer) }
 
         describe 'submitting to the create action' do
           before { post orderers_path }
           specify { expect(response).to redirect_to(signin_path) }
         end
 
+        describe 'submitting to the update action' do
+          before { patch orderer_path(orderer) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
         describe 'submitting to the destroy action' do
-          before { delete orderer_path(FactoryGirl.create(:orderer)) }
+          before { delete orderer_path(orderer) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
+
+      describe 'in the Worktimes controller' do
+        let(:work) { FactoryGirl.create(:work) }
+        let(:worktime) { FactoryGirl.create(:worktime,
+                                            work: work,
+                                            user_id: user.id) }
+
+        describe 'submitting to the create action' do
+          before { post worktimes_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe 'submitting to the update action' do
+          before { patch worktime_path(worktime) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe 'submitting to the destroy action' do
+          before { delete worktime_path(worktime) }
           specify { expect(response).to redirect_to(signin_path) }
         end
       end

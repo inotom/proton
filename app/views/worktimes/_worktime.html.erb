@@ -1,0 +1,8 @@
+<li>
+  <span class="start-time">
+    <%= worktime_fmt(worktime.start_time) %>
+  </span>
+  <span class="end-time">
+    <%= worktime_fmt(worktime.end_time) unless worktime.end_time.nil? %>
+  </span>
+</li>

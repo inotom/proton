@@ -98,6 +98,13 @@ describe "Work pages" do
                                     claimed: true,
                                     receipted: false,
                                     finished: false) }
+    let!(:wt1) { FactoryGirl.create(:worktime,
+                                    start_time: 1.minute.ago,
+                                    user_id: user.id,
+                                    work: work) }
+    let!(:wt2) { FactoryGirl.create(:worktime,
+                                    user_id: user.id,
+                                    work: work) }
 
     describe "page" do
       before { visit work_path(work) }
@@ -113,6 +120,11 @@ describe "Work pages" do
       it { should have_link('Back', root_path) }
       it { should have_link('Edit', edit_work_path(work)) }
       it { should have_link('Delete') }
+
+      describe "worktimes" do
+        it { should have_content(worktime_fmt(wt1.start_time)) }
+        it { should have_content(worktime_fmt(wt2.start_time)) }
+      end
     end
   end
 

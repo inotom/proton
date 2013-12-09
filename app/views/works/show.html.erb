@@ -31,6 +31,19 @@
     </div>
   </div>
   <div class="col-md-8">
+    <% if @work.worktimes.any? %>
+      <h3>Worktimes</h3>
+      <ol class="worktimes">
+        <%= render @worktimes unless @worktimes.nil? %>
+      </ol>
+    <% end %>
+    <div class="worktime-operations">
+      <%= form_for(@worktime) do |f| %>
+        <%= f.hidden_field :work_id, value: @work.id %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.submit 'Start work', class: 'btn btn-large btn-primary' %>
+      <% end %>
+    </div>
   </div>
 </div>
 <div class="work-page-nav">

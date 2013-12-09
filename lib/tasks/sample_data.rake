@@ -20,11 +20,19 @@ namespace :db do
     50.times do |n|
       title = "Work Title #{n}"
       other = Faker::Lorem.sentence(5)
-      users.each { |user| user.works.create!(title: title,
-                                             payment: 100.0,
-                                             other: other,
-                                             user: user,
-                                             orderer_id: 0) }
+      users.each do |user|
+        work = user.works.create!(title: title,
+                                  payment: 100.0,
+                                  other: other,
+                                  user: user,
+                                  orderer_id: 0)
+        5.times do |n2|
+          work.worktimes.create!(start_time: n2.minute.ago,
+                                 end_time: (n2+1).minute.ago,
+                                 user_id: user.id,
+                                 work: work)
+        end
+      end
     end
     5.times do |n|
       name = "Orderer Name #{n}"

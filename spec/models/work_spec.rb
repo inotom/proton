@@ -19,6 +19,7 @@ describe Work do
   it { should respond_to(:receipted) }
   it { should respond_to(:user_id) }
   it { should respond_to(:orderer_id) }
+  it { should respond_to(:worktimes) }
 
   it { should respond_to(:user) }
   its(:user) { should eq user }
@@ -38,5 +39,44 @@ describe Work do
   describe "with title that is too long" do
     before { @work.title = "a" * 256 }
     it { should_not be_valid }
+  end
+
+  describe "worktimes associations" do
+
+    before { @work.save }
+    let!(:older_worktime) do
+      FactoryGirl.create(:worktime,
+                         work: @work,
+                         user_id: user.id,
+                         start_time: 1.day.ago)
+    end
+    let!(:newer_worktime) do
+      FactoryGirl.create(:worktime,
+                         work: @work,
+                         user_id: user.id,
+                         start_time: 1.hour.ago)
+    end
+
+    it "should have the right worktimes in the right order" do
+      expect(@work.worktimes.to_a).to eq [newer_worktime, older_worktime]
+    end
+
+    it "should destroy associated worktimes" do
+      worktimes = @work.worktimes.to_a
+      @work.destroy
+      expect(worktimes).not_to be_empty
+      worktimes.each do |worktime|
+        expect(Worktime.where(id: worktime.id)).to be_empty
+      end
+    end
+
+    it "should destory user associated worktimes" do
+      worktimes = @work.worktimes.to_a
+      user.destroy
+      expect(worktimes).not_to be_empty
+      worktimes.each do |worktime|
+        expect(Worktime.where(id: worktime.id)).to be_empty
+      end
+    end
   end
 end

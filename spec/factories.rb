@@ -22,4 +22,9 @@ FactoryGirl.define do
     name "New Orderer"
     user
   end
+
+  factory :worktime do
+    start_time Time.now
+    work
+  end
 end

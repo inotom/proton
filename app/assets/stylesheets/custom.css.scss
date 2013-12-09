@@ -267,11 +267,12 @@ input {
   }
 }
 .works-title {
-  margin: 10px 0 0;
+  margin: 10px 0;
   font-size: 24px;
   font-weight: bold;
   text-align: left;
   color: #000;
+  letter-spacing: 0;
 }
 .works {
   list-style: none;
@@ -446,6 +447,7 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
 
 /* pagination {{{ */
 .pagination {
+  margin: 10px 0;
   .prev {
     a {
       &:before {

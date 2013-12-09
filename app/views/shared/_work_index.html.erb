@@ -1,8 +1,12 @@
 <% if @works.any? %>
-  <h2 class="works-title">Works (<%= @works.count %>)</h2>
+  <h2 class="works-title">Works <span class="badge"><%= @works.count %></span></h2>
+  <%= render 'shared/work_search' %>
   <%= will_paginate @works %>
   <ol class="works">
     <%= render @works %>
   </ol>
   <%= will_paginate @works %>
+<% else %>
+  <h2 class="works-title">Works <span class="badge">0</span></h2>
+  <%= render 'shared/work_search' %>
 <% end %>

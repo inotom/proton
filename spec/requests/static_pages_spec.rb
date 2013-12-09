@@ -34,6 +34,31 @@ describe "Static Pages" do
         it { should have_content(user.works.count) }
         it { should have_link('Create work', href: new_work_path) }
         it { should have_link('Orderers', orderers_path) }
+        it { should have_selector('input#search_form_q') }
+        it { should have_button('Search') }
+
+        describe "search" do
+          before do
+            fill_in 'search_form_q', with: 'New Work1'
+            click_button 'Search'
+          end
+
+          it { should have_content(work1.title) }
+          it { should_not have_content(work2.title) }
+
+          describe "no matches" do
+            before do
+              fill_in 'search_form_q', with: 'New Work3'
+              click_button 'Search'
+            end
+
+            it { should have_content('Works 0') }
+            it { should_not have_content(work1.title) }
+            it { should_not have_content(work2.title) }
+            it { should have_selector('input#search_form_q') }
+            it { should have_button('Search') }
+          end
+        end
       end
     end
   end

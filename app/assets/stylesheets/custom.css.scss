@@ -8,6 +8,18 @@ $grayLighter: #ccc;
   box-sizing: border-box;
 }
 
+/* fonts {{{ */
+@font-face {
+  font-family: 'proton';
+  src: url(proton.ttf) format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+.font {
+  font-family: 'proton';
+}
+/* }}} */
+
 /* misc {{{ */
 .debug_dump {
   clear: both;
@@ -246,6 +258,13 @@ input {
 /* works {{{ */
 .create-work-link {
   margin: 20px 0 0;
+  a {
+    &:before {
+      content: '+';
+      margin: 0 5px 0 0;
+      font-family: proton;
+    }
+  }
 }
 .works-title {
   margin: 10px 0 0;
@@ -278,16 +297,18 @@ input {
   color: green;
   &:after {
     display: inline-block;
-    content: 'o';
+    content: 'O';
     margin-right: 10px;
+    font-family: proton;
   }
 }
 .status-progress {
   color: red;
   &:after {
     display: inline-block;
-    content: '-';
+    content: '_';
     margin-right: 10px;
+    font-family: proton;
   }
 }
 .status-claimed-done {
@@ -420,5 +441,28 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
 }
 .orderers-page-nav {
   text-align: center;
+}
+/* }}} */
+
+/* pagination {{{ */
+.pagination {
+  .prev {
+    a {
+      &:before {
+        content: 'p';
+        margin: 0 5px 0 0;
+        font-family: proton;
+      }
+    }
+  }
+  .next {
+    a {
+      &:after {
+        content: 'n';
+        margin: 0 0 0 5px;
+        font-family: proton;
+      }
+    }
+  }
 }
 /* }}} */

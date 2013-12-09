@@ -23,10 +23,6 @@ describe Work do
   it { should respond_to(:user) }
   its(:user) { should eq user }
 
-  # TODO delete
-  #it { should respond_to(:orderer) }
-  #its(:orderer) { should eq orderer }
-
   it { should be_valid }
 
   describe "when user_id is not present" do

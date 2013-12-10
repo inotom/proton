@@ -172,8 +172,7 @@ describe 'AuthenticationPages' do
       describe 'in the Worktimes controller' do
         let(:work) { FactoryGirl.create(:work) }
         let(:worktime) { FactoryGirl.create(:worktime,
-                                            work: work,
-                                            user_id: user.id) }
+                                            work: work) }
 
         describe 'submitting to the create action' do
           before { post worktimes_path }

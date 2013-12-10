@@ -211,7 +211,7 @@ aside {
 /* }}} */
 
 /* signup forms {{{ */
-input[type="text"],input[type="password"], textarea, select, .uneditable-input {
+input[type="text"],input[type="password"], textarea, .uneditable-input {
   width: 100%;
   margin: {
     bottom: 15px;
@@ -391,6 +391,11 @@ input {
     width: auto;
   }
 }
+#work_orderer_id {
+  margin: {
+    bottom: 10px;
+  }
+}
 $ordererColors: #ccf #cff #cfc #ffc #fcc;
 @for $i from 0 through 4 {
   .orderer-#{$i} {
@@ -466,5 +471,67 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
       }
     }
   }
+}
+/* }}} */
+
+/* worktimes {{{ */
+.worktimes-header {
+  overflow: hidden;
+  margin: 15px 0;
+  .worktime-operations {
+    float: left;
+    margin: 0 10px;
+  }
+  h3 {
+    margin: 0;
+    padding: 3px 0 0;
+    font-size: 20px;
+  }
+}
+.worktimes {
+  width: 100%;
+  border-collapse: collapse;
+  tr, td {
+    border-collapse: collapse;
+    border-bottom: 1px solid #ccc;
+    padding: 6px 10px;
+  }
+}
+.start-time {
+}
+.end-time {
+}
+.worktime-memo {
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+.worktime-end-form {
+  display: inline-block;
+}
+.worktime-edit {
+  padding: {
+    left: 20px;
+  }
+}
+.worktime-delete {
+  padding: {
+    left: 10px;
+  }
+}
+.edit_worktime {
+  .times {
+    margin: {
+      bottom: 20px;
+    }
+  }
+}
+.worktime-page-nav {
+  margin: {
+    top: 10px;
+  }
+  text-align: center;
 }
 /* }}} */

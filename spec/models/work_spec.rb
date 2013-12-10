@@ -47,13 +47,11 @@ describe Work do
     let!(:older_worktime) do
       FactoryGirl.create(:worktime,
                          work: @work,
-                         user_id: user.id,
                          start_time: 1.day.ago)
     end
     let!(:newer_worktime) do
       FactoryGirl.create(:worktime,
                          work: @work,
-                         user_id: user.id,
                          start_time: 1.hour.ago)
     end
 

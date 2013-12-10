@@ -1,8 +1,25 @@
-<li>
-  <span class="start-time">
+<tr>
+  <td class="start-time" title="<%= worktime_fmt(worktime.start_time, t('view.worktime_full_format')) %>">
     <%= worktime_fmt(worktime.start_time) %>
-  </span>
-  <span class="end-time">
-    <%= worktime_fmt(worktime.end_time) unless worktime.end_time.nil? %>
-  </span>
-</li>
+  </td>
+  <td>〜</td>
+  <td class="end-time" title="<%= worktime_fmt(worktime.end_time, t('view.worktime_full_format')) %>">
+    <% if worktime.end_time.nil? %>
+      <%= form_tag worktime_path(worktime), method: :patch, class: 'worktime-end-form' do %>
+        <% if worktime.errors.any? %>
+          <%= render 'shared/error_messages', object: worktime %>
+        <% end %>
+        <%= hidden_field_tag 'worktime[id]', worktime.id, params: :id %>
+        <%= hidden_field_tag 'worktime[work_id]', worktime.work_id, params: :work_id %>
+        <%= submit_tag 'End work', class: 'btn btn-xs btn-primary' %>
+      <% end %>
+    <% else %>
+      <%= worktime_fmt(worktime.end_time) unless worktime.end_time.nil? %>
+    <% end %>
+  </td>
+  <td class="worktime-memo">
+    <%= simple_format(worktime.memo) %>
+  </td>
+  <td><%= link_to 'Edit', edit_worktime_path(worktime), class: 'worktime-edit' %></td>
+  <td><%= link_to 'Delete', worktime, method: :delete, data: { confirm: "You sure?" }, class: 'worktime-delete' %></td>
+</tr>

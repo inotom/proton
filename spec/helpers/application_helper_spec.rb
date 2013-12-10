@@ -15,4 +15,10 @@ describe ApplicationHelper do
       expect(full_title('')).not_to match(/ - /)
     end
   end
+
+  describe 'worktime_fmt' do
+    it 'should return blank if time is nil' do
+      expect(worktime_fmt(nil)).to be_nil
+    end
+  end
 end

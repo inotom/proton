@@ -5,13 +5,16 @@
 <%= f.label :payment %>
 <%= f.text_field :payment, class: 'form-control' %>
 
+<%= f.label :orderer_id %>
+<% if @orderers %>
+  <%= f.collection_select :orderer_id, @orderers, :id, :name, { include_blank: true }, { class: 'form-control' } %>
+<% else %>
+  <p>You must create a Orderer, to select one.</p>
+  <%= f.hidden_field :orderer_id %>
+<% end %>
+
 <%= f.label :other %>
 <%= f.text_area :other, rows: 5, class: 'form-control' %>
-
-<div class="checkbox-container">
-  <%= f.check_box :finished, class: 'form-control' %>
-  <%= f.label :finished %>
-</div>
 
 <div class="checkbox-container">
   <%= f.check_box :claimed, class: 'form-control' %>
@@ -23,10 +26,7 @@
   <%= f.label :receipted %>
 </div>
 
-<%= f.label :orderer_id %>
-<% if @orderers %>
-  <%= f.collection_select :orderer_id, @orderers, :id, :name, { include_blank: true }, { class: 'form-control' } %>
-<% else %>
-  <p>You must create a Orderer, to select one.</p>
-  <%= f.hidden_field :orderer_id %>
-<% end %>
+<div class="checkbox-container">
+  <%= f.check_box :finished, class: 'form-control' %>
+  <%= f.label :finished %>
+</div>

@@ -26,7 +26,7 @@ module ApplicationHelper
     end
   end
 
-  def worktime_fmt(time)
-    time.strftime('%d %b %Y %H:%M:%S')
+  def worktime_fmt(time, fmt = I18n.t('view.worktime_format'))
+    time.strftime(fmt) unless time.nil?
   end
 end

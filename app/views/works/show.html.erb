@@ -1,7 +1,7 @@
 <% provide(:title, @work.title) %>
 <h1 class="work-title"><%= @work.title %></h1>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <dl class="work-info">
       <dt><%= t 'view.orderer' %></dt>
       <dd>
@@ -30,20 +30,26 @@
                             data: { confirm: "You sure?" } %>
     </div>
   </div>
-  <div class="col-md-8">
-    <% if @work.worktimes.any? %>
+  <div class="col-md-9">
+    <div class="worktimes-header">
+      <div class="worktime-operations">
+        <%= form_tag worktimes_path, class: 'worktime-start-form' do %>
+          <% if @worktime && @worktime.errors.any? %>
+            <%= render 'shared/error_messages', object: @worktime %>
+          <% end %>
+          <%= hidden_field_tag 'worktime[work_id]', @work.id, params: :work_id %>
+          <%= submit_tag 'Start work', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
       <h3>Worktimes</h3>
-      <ol class="worktimes">
-        <%= render @worktimes unless @worktimes.nil? %>
-      </ol>
-    <% end %>
-    <div class="worktime-operations">
-      <%= form_for(@worktime) do |f| %>
-        <%= f.hidden_field :work_id, value: @work.id %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <%= f.submit 'Start work', class: 'btn btn-large btn-primary' %>
-      <% end %>
     </div>
+    <% if !@work.worktimes.nil? && @work.worktimes.any? %>
+      <table class="worktimes">
+        <tbody>
+          <%= render @work.worktimes %>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </div>
 <div class="work-page-nav">

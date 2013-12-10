@@ -100,10 +100,8 @@ describe "Work pages" do
                                     finished: false) }
     let!(:wt1) { FactoryGirl.create(:worktime,
                                     start_time: 1.minute.ago,
-                                    user_id: user.id,
                                     work: work) }
     let!(:wt2) { FactoryGirl.create(:worktime,
-                                    user_id: user.id,
                                     work: work) }
 
     describe "page" do

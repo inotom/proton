@@ -39,3 +39,5 @@ en:
     other: other
     status: status
     password_confirmation: Confirm Password
+    worktime_full_format: "%d %b %Y %H:%M:%S"
+    worktime_format: "%d %b %H:%M"

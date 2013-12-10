@@ -29,7 +29,6 @@ namespace :db do
         5.times do |n2|
           work.worktimes.create!(start_time: n2.minute.ago,
                                  end_time: (n2+1).minute.ago,
-                                 user_id: user.id,
                                  work: work)
         end
       end

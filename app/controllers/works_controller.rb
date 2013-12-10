@@ -5,8 +5,6 @@ class WorksController < ApplicationController
   def show
     @work = Work.find(params[:id])
     @orderer = current_user.orderers.find_by(id: @work.orderer_id) if signed_in?
-    @worktimes = @work.worktimes if signed_in?
-    @worktime = @work.worktimes.build if signed_in?
   end
 
   def new

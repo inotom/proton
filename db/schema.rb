@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209032900) do
+ActiveRecord::Schema.define(version: 20131210103721) do
 
   create_table "orderers", force: true do |t|
     t.string   "name"
@@ -55,11 +55,10 @@ ActiveRecord::Schema.define(version: 20131209032900) do
     t.datetime "end_time"
     t.text     "memo"
     t.integer  "work_id"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "worktimes", ["work_id", "user_id", "start_time"], name: "index_worktimes_on_work_id_and_user_id_and_start_time", unique: true
+  add_index "worktimes", ["work_id", "start_time"], name: "index_worktimes_on_work_id_and_user_id_and_start_time", unique: true
 
 end

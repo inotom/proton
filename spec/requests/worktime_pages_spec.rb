@@ -63,4 +63,23 @@ describe "Worktime Pages" do
       end
     end
   end
+
+  describe "total worktimes" do
+    let!(:worktime1) { FactoryGirl.create(:worktime,
+                                          start_time: 5.minutes.ago,
+                                          end_time: Time.now,
+                                          work: work) }
+    let!(:worktime2) { FactoryGirl.create(:worktime,
+                                          start_time: 11.hours.ago,
+                                          end_time: 10.hours.ago,
+                                          work: work) }
+
+    describe "count" do
+      before do
+        visit work_path(work)
+      end
+
+      it { should have_content('Total: 1 hour 5 minutes') }
+    end
+  end
 end

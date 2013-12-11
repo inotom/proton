@@ -112,6 +112,16 @@ ja:
     password_confirmation: パスワード確認
     worktime_full_format: "%Y/%m/%d %H:%M:%S"
     worktime_format: "%m/%d %H:%M"
+    worktimes_total: 合計
+    worktimes_total_hour:
+      zero:
+      one: 1 時間
+      other: "%{count} 時間"
+    worktimes_total_minute:
+      zero:
+      one: 1 分
+      other: "%{count} 分"
+    worktimes_title: 作業時間
   will_paginate:
     next_label: 次へ
     previous_label: 前へ

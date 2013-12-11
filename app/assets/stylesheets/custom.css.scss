@@ -108,18 +108,22 @@ p {
     right: 10px;
   }
   padding: {
-    top: 9px;
+    top: 11px;
   }
   color: #eee;
-  font-size: 1.7rem;
-  font-weight: bold;
+  font: {
+    size: 1.8rem;
+    weight: bold;
+  }
   text-transform: uppercase;
   letter-spacing: -1px;
   line-height: 1;
   &:hover {
     color: white;
     text-decoration: none;
+    text-shadow: rgba(255, 255, 255, .5) 0 0 15px;
   }
+  text-shadow: rgba(0, 0, 0, .9) 0 -2px 1px;
 }
 header {
   .navbar-inner {
@@ -290,9 +294,12 @@ input {
   opacity: 1;
 }
 .work-title {
-  margin: 5px 0 10px;
-  font-size: 20px;
+  margin: 5px 0 10px 300px;
+  font: {
+    size: 24px;
+  }
   letter-spacing: 0;
+  text-align: left;
 }
 .status-done {
   color: green;
@@ -482,10 +489,14 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
     float: left;
     margin: 0 10px;
   }
-  h3 {
-    margin: 0;
+  .worktimes-title {
+    float: left;
+    margin: 0 10px 0;
     padding: 3px 0 0;
     font-size: 20px;
+  }
+  .worktimes-total {
+    padding: 4px 0 0;
   }
 }
 .worktimes {

@@ -41,7 +41,10 @@
           <%= submit_tag 'Start work', class: 'btn btn-primary' %>
         <% end %>
       </div>
-      <h3>Worktimes</h3>
+      <h3 class="worktimes-title"><%= t 'view.worktimes_title' %></h3>
+      <div class="worktimes-total">
+        <%= t 'view.worktimes_total' %>: <%= total_worktimes_fmt(@work.total_worktimes) %>
+      </div>
     </div>
     <% if !@work.worktimes.nil? && @work.worktimes.any? %>
       <table class="worktimes">

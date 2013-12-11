@@ -41,3 +41,13 @@ en:
     password_confirmation: Confirm Password
     worktime_full_format: "%d %b %Y %H:%M:%S"
     worktime_format: "%d %b %H:%M"
+    worktimes_total: Total
+    worktimes_total_hour:
+      zero:
+      one: 1 hour
+      other: "%{count} hours"
+    worktimes_total_minute:
+      zero:
+      one: 1 minute
+      other: "%{count} minutes"
+    worktimes_title: Worktimes

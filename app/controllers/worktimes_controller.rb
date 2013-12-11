@@ -1,5 +1,6 @@
 class WorktimesController < ApplicationController
   before_action :signed_in_user
+  before_action :correct_worktime, only: [:edit, :destroy]
 
   def create
     @work = current_user.works.find_by(id: worktime_params[:work_id])
@@ -15,9 +16,6 @@ class WorktimesController < ApplicationController
   end
 
   def edit
-    _worktime = Worktime.find(params[:id])
-    @work = current_user.works.find_by(id: _worktime.work_id)
-    @worktime = @work.worktimes.find_by(id: params[:id])
   end
 
   def update
@@ -33,6 +31,8 @@ class WorktimesController < ApplicationController
   end
 
   def destroy
+    @worktime.destroy
+    redirect_to work_path(@work)
   end
 
   private
@@ -42,5 +42,11 @@ class WorktimesController < ApplicationController
                                        :start_time,
                                        :memo,
                                        :end_time)
+    end
+
+    def correct_worktime
+      @worktime = Worktime.find(params[:id])
+      @work = current_user.works.find_by(id: @worktime.work_id)
+      redirect_to(root_path) if @work.nil?
     end
 end

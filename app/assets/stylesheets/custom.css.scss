@@ -495,11 +495,20 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
     border-collapse: collapse;
     border-bottom: 1px solid #ccc;
     padding: 6px 10px;
+    vertical-align: top;
   }
-}
-.start-time {
-}
-.end-time {
+  .tilde,
+  .start-time,
+  .end-time {
+    text-align: center;
+  }
+  .start-time,
+  .end-time {
+    width: 7rem;
+  }
+  .tilde {
+    width: 2rem;
+  }
 }
 .worktime-memo {
   p {
@@ -512,14 +521,12 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
   display: inline-block;
 }
 .worktime-edit {
-  padding: {
-    left: 20px;
-  }
+  width: 3rem;
+  text-align: right;
 }
 .worktime-delete {
-  padding: {
-    left: 10px;
-  }
+  width: 4rem;
+  text-align: right;
 }
 .edit_worktime {
   .times {

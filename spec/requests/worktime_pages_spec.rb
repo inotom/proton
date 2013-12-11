@@ -14,8 +14,8 @@ describe "Worktime Pages" do
 
     it { should have_button('Start work') }
     it { should_not have_button('End work') }
-    it { should_not have_selector('a.worktime-edit') }
-    it { should_not have_selector('a.worktime-delete') }
+    it { should_not have_selector('.worktime-edit a') }
+    it { should_not have_selector('.worktime-delete a') }
 
     describe "worktime creation" do
       it "should create a worktime" do
@@ -25,8 +25,8 @@ describe "Worktime Pages" do
       before { click_button 'Start work' }
       it { should have_content('Start work!') }
       it { should have_button('End work') }
-      it { should have_selector('a.worktime-edit') }
-      it { should have_selector('a.worktime-delete') }
+      it { should have_selector('.worktime-edit a') }
+      it { should have_selector('.worktime-delete a') }
 
       describe "worktime update (End work)" do
         it "should not create a worktime" do
@@ -48,5 +48,19 @@ describe "Worktime Pages" do
     it { should have_link('Back', work_path(work)) }
     it { should have_title('Edit worktime') }
     it { should have_content('Edit worktime') }
+  end
+
+  describe "worktime destruction" do
+    before { FactoryGirl.create(:worktime, work: work) }
+
+    describe "as correct user" do
+      before { visit work_path(work) }
+
+      it { should have_selector('.worktime-delete a') }
+
+      it "should delete a worktime" do
+        expect { find('.worktime-delete').click_link "Delete" }.to change(Worktime, :count).by(-1)
+      end
+    end
   end
 end

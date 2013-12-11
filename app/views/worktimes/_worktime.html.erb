@@ -2,7 +2,7 @@
   <td class="start-time" title="<%= worktime_fmt(worktime.start_time, t('view.worktime_full_format')) %>">
     <%= worktime_fmt(worktime.start_time) %>
   </td>
-  <td>〜</td>
+  <td class="tilde">〜</td>
   <td class="end-time" title="<%= worktime_fmt(worktime.end_time, t('view.worktime_full_format')) %>">
     <% if worktime.end_time.nil? %>
       <%= form_tag worktime_path(worktime), method: :patch, class: 'worktime-end-form' do %>
@@ -20,6 +20,6 @@
   <td class="worktime-memo">
     <%= simple_format(worktime.memo) %>
   </td>
-  <td><%= link_to 'Edit', edit_worktime_path(worktime), class: 'worktime-edit' %></td>
-  <td><%= link_to 'Delete', worktime, method: :delete, data: { confirm: "You sure?" }, class: 'worktime-delete' %></td>
+  <td class="worktime-edit"><%= link_to 'Edit', edit_worktime_path(worktime) %></td>
+  <td class="worktime-delete"><%= link_to 'Delete', worktime, method: :delete, data: { confirm: "You sure?" } %></td>
 </tr>

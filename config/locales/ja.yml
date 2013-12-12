@@ -122,6 +122,7 @@ ja:
       one: 1 分
       other: "%{count} 分"
     worktimes_title: 作業時間
+    worktimes_payment_rate: /時間
   will_paginate:
     next_label: 次へ
     previous_label: 前へ

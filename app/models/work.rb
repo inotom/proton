@@ -16,4 +16,18 @@ class Work < ActiveRecord::Base
     end
     total
   end
+
+  def payment_rate
+    pay_rt = 0
+    if self.payment.nil? || self.payment.blank?
+      payment = 0
+    else
+      payment = self.payment
+    end
+
+    if self.total_worktimes > 0
+      pay_rt = payment / (self.total_worktimes / 60 / 60)
+    end
+    pay_rt.round
+  end
 end

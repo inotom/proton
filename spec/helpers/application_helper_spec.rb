@@ -47,4 +47,81 @@ describe ApplicationHelper do
       expect(total_worktimes_fmt(1.day + 30.minutes)).to match(/^24\shours\s30\sminutes$/)
     end
   end
+
+  describe 'payment_rate' do
+    let(:user) { FactoryGirl.create(:user) }
+    #let(:work_full) { FactoryGirl.create(:work, user: user, title: 'New Work Full') }
+    #let(:work_no_payment) { FactoryGirl.create(:work, user: user, title: 'New Work No Payment') }
+    #let(:work_no_time) { FactoryGirl.create(:work, user: user, title: 'New Work No Time') }
+
+    #let!(:worktime_full) { FactoryGirl.create(:worktime,
+    #                                      start_time: 11.hours.ago,
+    #                                      end_time: 10.hours.ago,
+    #                                      payment: 5000,
+    #                                      work: work_full) }
+    #let!(:worktime_no_payment) { FactoryGirl.create(:worktime,
+    #                                      start_time: 11.hours.ago,
+    #                                      end_time: 10.hours.ago,
+    #                                      work: work_no_payment) }
+    #let!(:worktime_no_time) { FactoryGirl.create(:worktime,
+    #                                      start_time: 15.minutes.ago,
+    #                                      payment: 3000,
+    #                                      work: work_no_time) }
+
+    describe 'no payment and no worktime' do
+      let(:work) { FactoryGirl.create(:work, user: user, title: 'New Work') }
+      let!(:worktime) { FactoryGirl.create(:worktime,
+                                           start_time: 15.minutes.ago,
+                                           work: work) }
+      before { sign_in user }
+
+      it 'shoud return zero payment rate' do
+        expect(work.payment_rate).to eq(0)
+      end
+    end
+
+    describe 'no payment' do
+      let(:work) { FactoryGirl.create(:work,
+                                      user: user,
+                                      payment: nil,
+                                      title: 'New Work') }
+      let!(:worktime) { FactoryGirl.create(:worktime,
+                                           start_time: 15.minutes.ago,
+                                           end_time: 10.minutes.ago,
+                                           work: work) }
+      before { sign_in user }
+
+      it 'should return zero payment rate' do
+        expect(work.payment_rate).to eq(0)
+      end
+    end
+
+    describe 'no worktime' do
+      let(:work) { FactoryGirl.create(:work, user: user, title: 'New Work') }
+      let!(:worktime) { FactoryGirl.create(:worktime,
+                                           start_time: 15.minutes.ago,
+                                           work: work) }
+      before { sign_in user }
+
+      it 'should return zero payment rate' do
+        expect(work.payment_rate).to eq(0)
+      end
+    end
+
+    describe 'has payment and worktime' do
+      let(:work) { FactoryGirl.create(:work,
+                                      user: user,
+                                      payment: 542,
+                                      title: 'New Work') }
+      let!(:worktime) { FactoryGirl.create(:worktime,
+                                           start_time: 24.minutes.ago,
+                                           end_time: 11.minutes.ago,
+                                           work: work) }
+      before { sign_in user }
+
+      it 'should return correct payment rate' do
+        expect(work.payment_rate).to eq(2502)
+      end
+    end
+  end
 end

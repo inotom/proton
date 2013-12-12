@@ -51,3 +51,4 @@ en:
       one: 1 minute
       other: "%{count} minutes"
     worktimes_title: Worktimes
+    worktimes_payment_rate: per hour

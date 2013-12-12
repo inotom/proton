@@ -45,6 +45,9 @@
       <div class="worktimes-total">
         <%= t 'view.worktimes_total' %>: <%= total_worktimes_fmt(@work.total_worktimes) %>
       </div>
+      <div class="worktimes-payment-rate<%= '-hide' unless @work.claimed %>">
+        <%= number_to_currency(@work.payment_rate) %> <%= t 'view.worktimes_payment_rate' %>
+      </div>
     </div>
     <% if !@work.worktimes.nil? && @work.worktimes.any? %>
       <table class="worktimes">

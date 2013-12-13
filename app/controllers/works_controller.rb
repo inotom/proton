@@ -1,6 +1,7 @@
 class WorksController < ApplicationController
   before_action :signed_in_user
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
+  before_action :finished_at, only: [:update]
 
   def show
     @work = Work.find(params[:id])
@@ -54,5 +55,15 @@ class WorksController < ApplicationController
     def correct_user
       @work = current_user.works.find_by(id: params[:id])
       redirect_to(root_path) if @work.nil?
+    end
+
+    ##
+    # set datetime to @work.finished_at only once
+    #
+    # work_params[:finished]
+    # "0" : unchecked
+    # "1" : checked
+    def finished_at
+      @work.update_attribute(:finished_at, Time.now) if @work.finished_at.nil? && work_params[:finished] == "1"
     end
 end

@@ -146,6 +146,10 @@ describe "Work pages" do
       it { should have_selector("select#work_orderer_id > option",
                                 count: user.orderers.size + 1) }
 
+      it "should not finished" do
+        expect(work.finished_at).to be_nil
+      end
+
       describe "with invalid information" do
         before do
           visit edit_work_path(work)
@@ -160,6 +164,7 @@ describe "Work pages" do
       describe "with valid information" do
         before do
           visit edit_work_path(work)
+          find(:css, "#work_finished").set(false)
           fill_in 'work_title', with: 'Updated work title'
         end
         it "should not change work count" do
@@ -170,6 +175,27 @@ describe "Work pages" do
           before { click_button 'Update work' }
           it { should have_content('Work updated!') }
           it { should have_content('Updated work title') }
+          it "should not finished" do
+            expect(Work.where(id: work.id).first.finished_at).to be_nil
+          end
+        end
+      end
+
+      describe "finished check" do
+        before do
+          visit edit_work_path(work)
+          find(:css, "#work_finished").set(true)
+          # check('work_finished')
+        end
+
+        describe "work status to be finished" do
+          before { click_button 'Update work' }
+
+          it { should have_selector(".status-finished-done") }
+          it "should finished" do
+            p Work.where(id: work.id).first
+            expect(Work.where(id: work.id).first.finished_at).not_to be_nil
+          end
         end
       end
 

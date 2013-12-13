@@ -24,9 +24,9 @@ class User < ActiveRecord::Base
   def total_payments
     total = Hash.new
     self.works.each do |work|
-      next unless work.finished
+      next if work.finished_at.nil?
 
-      year = work.updated_at.year.to_s
+      year = work.finished_at.year.to_s
       unless total.key?(year)
         total[year] = work.payment if work.payment
       else

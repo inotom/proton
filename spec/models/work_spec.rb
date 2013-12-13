@@ -15,6 +15,7 @@ describe Work do
   it { should respond_to(:payment) }
   it { should respond_to(:other) }
   it { should respond_to(:finished) }
+  it { should respond_to(:finished_at) }
   it { should respond_to(:claimed) }
   it { should respond_to(:receipted) }
   it { should respond_to(:user_id) }

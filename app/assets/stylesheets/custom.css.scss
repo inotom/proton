@@ -567,3 +567,41 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
   text-align: center;
 }
 /* }}} */
+
+/* todos {{{ */
+.todo-container {
+  dt {
+    margin: {
+      bottom: 5px;
+    }
+  }
+  .todo-create-submit-container {
+    margin: {
+      bottom: 20px;
+    }
+    text-align: right;
+  }
+  .todo-list {
+    padding: 0;
+    list-style-type: none;
+    li {
+      margin: 0 0 5px;
+      padding: 0 0 5px;
+      border-bottom: 1px solid $grayLighter;
+      text-align: right;
+    }
+    .todo-title {
+      display: block;
+      text-align: left;
+    }
+    .todo-done,
+    .todo-delete {
+      font-family: proton;
+      a {
+        text-decoration: none;
+        outline: 0 none;
+      }
+    }
+  }
+}
+/* }}} */

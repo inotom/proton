@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210103721) do
+ActiveRecord::Schema.define(version: 20131213064748) do
 
   create_table "orderers", force: true do |t|
     t.string   "name"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20131210103721) do
   end
 
   add_index "orderers", ["user_id"], name: "index_orderers_on_user_id"
+
+  create_table "todos", force: true do |t|
+    t.string   "title"
+    t.boolean  "status",     default: false, null: false
+    t.integer  "work_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "todos", ["work_id", "created_at"], name: "index_todos_on_work_id_and_created_at"
 
   create_table "users", force: true do |t|
     t.string   "name"

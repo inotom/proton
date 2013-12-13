@@ -20,6 +20,7 @@ describe Work do
   it { should respond_to(:user_id) }
   it { should respond_to(:orderer_id) }
   it { should respond_to(:worktimes) }
+  it { should respond_to(:todos) }
 
   it { should respond_to(:user) }
   its(:user) { should eq user }
@@ -74,6 +75,30 @@ describe Work do
       expect(worktimes).not_to be_empty
       worktimes.each do |worktime|
         expect(Worktime.where(id: worktime.id)).to be_empty
+      end
+    end
+  end
+
+  describe "todos associations" do
+
+    before { @work.save }
+    let!(:older_todo) do
+      FactoryGirl.create(:todo, work: @work, created_at: 1.day.ago)
+    end
+    let!(:newer_todo) do
+      FactoryGirl.create(:todo, work: @work, created_at: 1.hour.ago)
+    end
+
+    it "should have the right todos in the right order" do
+      expect(@work.todos.to_a).to eq [newer_todo, older_todo]
+    end
+
+    it "should destroy associated todos" do
+      todos = @work.todos.to_a
+      @work.destroy
+      expect(todos).not_to be_empty
+      todos.each do |todo|
+        expect(Todo.where(id: todo.id)).to be_empty
       end
     end
   end

@@ -27,9 +27,14 @@ namespace :db do
                                   user: user,
                                   orderer_id: 0)
         5.times do |n2|
-          work.worktimes.create!(start_time: n2.minute.ago,
-                                 end_time: (n2+1).minute.ago,
+          work.worktimes.create!(start_time: (n2 + 5).minute.ago,
+                                 end_time: n2.minute.ago,
                                  work: work)
+        end
+        5.times do |n3|
+          todo_title = "Todo Title #{n3}"
+          work.todos.create!(title: todo_title,
+                             work: work)
         end
       end
     end

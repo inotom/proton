@@ -29,6 +29,17 @@
       <%= link_to 'Delete', @work, method: :delete,
                             data: { confirm: "You sure?" } %>
     </div>
+    <dl class="todo-container">
+      <dt>Todo</dt>
+      <dd>
+        <%= render 'shared/todo_form' %>
+        <% if @work.todos.any? %>
+          <ul class="todo-list">
+            <%= render @todos %>
+          </ul>
+        <% end %>
+      </dd>
+    </dl>
   </div>
   <div class="col-md-9">
     <div class="worktimes-header">

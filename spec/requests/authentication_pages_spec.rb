@@ -190,6 +190,26 @@ describe 'AuthenticationPages' do
         end
       end
 
+      describe 'in the Todos controller' do
+        let(:work) { FactoryGirl.create(:work) }
+        let(:todo) { FactoryGirl.create(:todo, work: work) }
+
+        describe 'submittig to the create action' do
+          before { post todos_path }
+          specify{ expect(response).to redirect_to(signin_path) }
+        end
+
+        describe 'submittig to the update action' do
+          before { patch todo_path(todo) }
+          specify{ expect(response).to redirect_to(signin_path) }
+        end
+
+        describe 'submittig to the destroy action' do
+          before { delete todo_path(todo) }
+          specify{ expect(response).to redirect_to(signin_path) }
+        end
+      end
+
       describe 'in the Users contoroller' do
 
         describe 'visiting the edit page' do

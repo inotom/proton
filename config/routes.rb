@@ -4,6 +4,7 @@ Proton::Application.routes.draw do
   resources :works,     only: [:show, :new, :create, :edit, :update, :destroy]
   resources :orderers,  only: [:index, :create, :edit, :update, :destroy]
   resources :worktimes, only: [:create, :edit, :update, :destroy]
+  resources :todos,     only: [:create, :update, :destroy]
 
   root 'static_pages#home'
   match '/signup' , to: 'users#new'         , via: 'get'

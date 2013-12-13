@@ -103,6 +103,7 @@ describe "Work pages" do
                                     work: work) }
     let!(:wt2) { FactoryGirl.create(:worktime,
                                     work: work) }
+    let!(:todo) { FactoryGirl.create(:todo, work: work, title: 'New Todo') }
 
     describe "page" do
       before { visit work_path(work) }
@@ -122,6 +123,10 @@ describe "Work pages" do
       describe "worktimes" do
         it { should have_content(worktime_fmt(wt1.start_time)) }
         it { should have_content(worktime_fmt(wt2.start_time)) }
+      end
+
+      describe "todos" do
+        it { should have_content(todo.title) }
       end
     end
   end

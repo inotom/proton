@@ -27,4 +27,9 @@ FactoryGirl.define do
     start_time Time.now
     work
   end
+
+  factory :todo do
+    title "New Todo"
+    work
+  end
 end

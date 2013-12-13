@@ -74,6 +74,11 @@ ja:
             title:
               too_long: は255文字以内で作成してください
               blank: は必須項目です
+        todo:
+          attributes:
+            title:
+              too_long: は255文字以内で作成してください
+              blank: は必須項目です
     models:
       user: ユーザー
       orderer: 発注者

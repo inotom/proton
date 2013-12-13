@@ -1,0 +1,19 @@
+<% unless todo.id.nil? %>
+  <li>
+    <span class="todo-title" title="<%= todo.title %>">
+      <% if todo.status %>
+        <del>
+      <% end %>
+      <%= todo.title %>
+      <% if todo.status %>
+        </del>
+      <% end %>
+    </span>
+    <span class="todo-done">
+      <%= link_to 'o', todo, method: :patch, class: 'todo-done-link', title: 'Toggle this status' %>
+    </span>
+    <span class="todo-delete">
+      <%= link_to 'D', todo, method: :delete, data: { confirm: 'You sure?' }, title: 'Delete this todo' %>
+    </span>
+  </li>
+<% end %>

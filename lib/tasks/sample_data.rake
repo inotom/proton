@@ -22,7 +22,7 @@ namespace :db do
       other = Faker::Lorem.sentence(5)
       users.each do |user|
         work = user.works.create!(title: title,
-                                  payment: 100.0,
+                                  payment: 12000.0,
                                   other: other,
                                   user: user,
                                   orderer_id: 0)

@@ -11,4 +11,12 @@
   <div class="orderers-link">
     <%= link_to 'Orderers', orderers_path, class: 'btn btn-large btn-primary' %>
   </div>
+  <div class="total-payments-container">
+    <h2 class="total-payments-title"><%= t 'view.total_payments' %></h2>
+    <ul class="total-payments">
+      <% @user.total_payments.each do |year, payments| %>
+        <li><%= year %><%= t 'view.year' %>: <%= number_to_currency(payments) %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

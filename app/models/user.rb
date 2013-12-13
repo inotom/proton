@@ -21,6 +21,21 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def total_payments
+    total = Hash.new
+    self.works.each do |work|
+      next unless work.finished
+
+      year = work.updated_at.year.to_s
+      unless total.key?(year)
+        total[year] = work.payment if work.payment
+      else
+        total[year] += work.payment if work.payment
+      end
+    end
+    total
+  end
+
   private
 
     def create_remember_token

@@ -28,6 +28,8 @@ en:
         nagative_format: "%u-%n"
         precision: 1
   view:
+    year:
+    total_payments: Total payments
     ago: ago
     updated: Updated
     created: Created

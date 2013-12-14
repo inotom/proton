@@ -6,6 +6,7 @@
     </section>
   </aside>
   <div class="col-md-9">
+    <p class="user-type">user type: <%= @user.admin? ? 'admin' : 'normal' %></p>
     <%= render 'shared/total_payments' %>
   </div>
 </div>

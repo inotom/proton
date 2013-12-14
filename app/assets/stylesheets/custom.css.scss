@@ -298,6 +298,9 @@ input {
   text-align: left;
   color: #000;
   letter-spacing: 0;
+  .badge {
+    vertical-align: middle;
+  }
 }
 .works {
   list-style: none;

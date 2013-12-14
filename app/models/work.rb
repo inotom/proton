@@ -22,8 +22,9 @@ class Work < ActiveRecord::Base
     chart = { earlymorning: 0, morning: 0, noon: 0, evening: 0, night: 0, midnight: 0 }
     self.worktimes.each do |worktime|
       unless worktime.end_time.nil?
-        zone = worktime_zone(worktime)
-        chart[zone] += 1
+        worktime_zones(worktime).each do |zone|
+          chart[zone] += 1
+        end
       end
     end
     chart
@@ -45,8 +46,18 @@ class Work < ActiveRecord::Base
 
   private
 
-    def worktime_zone(worktime)
-      hour = (((worktime.end_time - worktime.start_time) / 60 / 60) / 2) + worktime.start_time.hour
+    def worktime_zones(worktime)
+      from = worktime.start_time.hour
+      to   = from + ((worktime.end_time - worktime.start_time) / 60 / 60)
+      zones = Array.new
+      (from..to).to_a.each do |hour|
+        hour = hour - 24 if hour > 24
+        zones.push(get_zones(hour))
+      end
+      zones
+    end
+
+    def get_zones(hour)
       case
       when hour >= 2  && hour < 6
         :earlymorning

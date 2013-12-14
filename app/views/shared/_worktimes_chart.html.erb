@@ -1,6 +1,8 @@
 <div class="worktimes-chart-container">
   <h3 class="worktimes-chart-title">Worktimes chart</h3>
   <canvas id="canvas" width="150" height="150"></canvas>
+  <ul id="chart-labels">
+  </ul>
   <%= javascript_include_tag "Chart.min" %>
   <script>
     (function($) {
@@ -9,26 +11,32 @@
         $.getJSON(json_uri, {}, function(json) {
           var data = [
             {
+              label: 'earlymorning',
               value: json.chart.earlymorning,
               color: '#A8E2E7'
             },
             {
+              label: 'moring',
               value: json.chart.morning,
               color: '#69D2E7'
             },
             {
+              label: 'noon',
               value: json.chart.noon,
               color: '#FBCA30'
             },
             {
+              label: 'evening',
               value: json.chart.evening,
               color: '#F38630'
             },
             {
+              label: 'night',
               value: json.chart.night,
-              color: '#035DC2'
+              color: '#33066D'
             },
             {
+              label: 'midnight',
               value: json.chart.midnight,
               color: '#202933'
             }
@@ -38,6 +46,11 @@
           var ctx = canvas.getContext('2d');
           var chart = new Chart(ctx);
           chart.Pie(data, {});
+          for (var i = 0; i < data.length; i++) {
+            $('#chart-labels').append(
+              '<li style="color:' + data[i].color + '">' + data[i].label + '</li>'
+            );
+          }
         });
       });
     })(jQuery);

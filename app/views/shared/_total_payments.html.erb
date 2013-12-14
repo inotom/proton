@@ -1,0 +1,10 @@
+<% if current_user?(@user) %>
+  <div class="total-payments-container">
+    <h2 class="total-payments-title"><%= t 'view.total_payments' %></h2>
+    <ul class="total-payments">
+      <% @user.total_payments.each do |year, payments| %>
+        <li><%= year %><%= t 'view.year' %>: <%= number_to_currency(payments) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

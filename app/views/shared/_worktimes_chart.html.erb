@@ -1,0 +1,45 @@
+<div class="worktimes-chart-container">
+  <h3 class="worktimes-chart-title">Worktimes chart</h3>
+  <canvas id="canvas" width="150" height="150"></canvas>
+  <%= javascript_include_tag "Chart.min" %>
+  <script>
+    (function($) {
+      $(function() {
+        var json_uri = '/works/' + <%= @work.id %> + '/worktimeschart.json';
+        $.getJSON(json_uri, {}, function(json) {
+          var data = [
+            {
+              value: json.chart.earlymorning,
+              color: '#A8E2E7'
+            },
+            {
+              value: json.chart.morning,
+              color: '#69D2E7'
+            },
+            {
+              value: json.chart.noon,
+              color: '#FBCA30'
+            },
+            {
+              value: json.chart.evening,
+              color: '#F38630'
+            },
+            {
+              value: json.chart.night,
+              color: '#035DC2'
+            },
+            {
+              value: json.chart.midnight,
+              color: '#202933'
+            }
+          ];
+
+          var canvas = document.getElementById('canvas');
+          var ctx = canvas.getContext('2d');
+          var chart = new Chart(ctx);
+          chart.Pie(data, {});
+        });
+      });
+    })(jQuery);
+  </script>
+</div>

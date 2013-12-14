@@ -18,6 +18,17 @@ class Work < ActiveRecord::Base
     total
   end
 
+  def worktimes_chart
+    chart = { earlymorning: 0, morning: 0, noon: 0, evening: 0, night: 0, midnight: 0 }
+    self.worktimes.each do |worktime|
+      unless worktime.end_time.nil?
+        zone = worktime_zone(worktime)
+        chart[zone] += 1
+      end
+    end
+    chart
+  end
+
   def payment_rate
     pay_rt = 0
     if self.payment.nil? || self.payment.blank?
@@ -31,4 +42,24 @@ class Work < ActiveRecord::Base
     end
     pay_rt.round
   end
+
+  private
+
+    def worktime_zone(worktime)
+      hour = (((worktime.end_time - worktime.start_time) / 60 / 60) / 2) + worktime.start_time.hour
+      case
+      when hour >= 2  && hour < 6
+        :earlymorning
+      when hour >= 6  && hour < 10
+        :morning
+      when hour >= 10 && hour < 14
+        :noon
+      when hour >= 14 && hour < 18
+        :evening
+      when hour >= 18 && hour < 22
+        :night
+      else
+        :midnight
+      end
+    end
 end

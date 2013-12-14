@@ -556,6 +556,15 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
     width: 2rem;
   }
 }
+.worktimes-chart-container {
+  width: 150px;
+  .worktimes-chart-title {
+    font: {
+      size: 18px;
+    }
+    text-align: center;
+  }
+}
 .worktime-memo {
   p {
     margin: 0;

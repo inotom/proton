@@ -1,6 +1,6 @@
 class WorksController < ApplicationController
   before_action :signed_in_user
-  before_action :correct_user, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy, :worktimeschart]
   before_action :finished_at, only: [:update]
 
   def show
@@ -43,6 +43,14 @@ class WorksController < ApplicationController
   def destroy
     @work.destroy
     redirect_to root_path
+  end
+
+  def worktimeschart
+    respond_to do |format|
+      format.json { render :json => { status: 'success',
+                                      id: @work.id,
+                                      chart: @work.worktimes_chart }.to_json }
+    end
   end
 
   private

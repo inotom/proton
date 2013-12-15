@@ -42,8 +42,8 @@ ja:
       x_minutes: "%{count}分"
       about_x_hours: "約%{count}時間"
       x_days: "%{count}日"
-      about_x_month: "約%{count}ヶ月"
-      x_month: "%{count}ヶ月"
+      about_x_months: "約%{count}ヶ月"
+      x_months: "%{count}ヶ月"
       about_x_years: "約%{count}年"
       over_x_years: "%{count}年以上"
   activerecord:

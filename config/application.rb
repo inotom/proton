@@ -25,6 +25,6 @@ module Proton
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
-    config.assets.precompile += %w(*.ttf)
+    config.assets.precompile += %w(.ttf)
   end
 end

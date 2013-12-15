@@ -11,7 +11,7 @@ $grayLighter: #ccc;
 /* fonts {{{ */
 @font-face {
   font-family: 'proton';
-  src: url(proton.ttf) format('truetype');
+  src: url(font-path('proton.ttf')) format('truetype');
   font-style: normal;
   font-weight: normal;
 }

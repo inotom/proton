@@ -7,13 +7,18 @@ Proton::Application.routes.draw do
   resources :todos,     only: [:create, :update, :destroy]
 
   root 'static_pages#home'
-  #match '/signup' , to: 'users#new'         , via: 'get'
-  match '/signup' , to: 'static_pages#home' , via: 'get'
   match '/signin' , to: 'sessions#new'      , via: 'get'
   match '/signout', to: 'sessions#destroy'  , via: 'delete'
   match '/help'   , to: 'static_pages#help' , via: 'get'
   match '/about'  , to: 'static_pages#about', via: 'get'
   get 'works/:id/worktimeschart' => 'works#worktimeschart'
+
+  if Rails.env.production?
+    match '/signup' , to: 'static_pages#home' , via: 'get'
+  else
+    match '/signup' , to: 'users#new'         , via: 'get'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,5 +1,11 @@
 <li class="work-<%= work_status_class(work.finished) %>">
-  <h3 class="work-title"><%= link_to work.title, work_path(work) %></h3>
+  <h3 class="work-title">
+    <%= link_to work.title, work_path(work) %>
+    <% ur_todo_count = work.unresolved_todos.size %>
+    <% if ur_todo_count > 0 %>
+      <span class="badge">Todo: <%= ur_todo_count %></span>
+    <% end %>
+  </h3>
   <div class="orderer-name-box">
     <% orderer = @orderers.find_by(id: work.orderer_id) %>
     <% if orderer %>

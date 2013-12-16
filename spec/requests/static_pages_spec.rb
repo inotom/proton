@@ -36,6 +36,7 @@ describe "Static Pages" do
         it { should have_link('Orderers', orderers_path) }
         it { should have_selector('input#search_form_q') }
         it { should have_button('Search') }
+        it { should_not have_content('Todo:') }
 
         describe "search" do
           before do
@@ -58,6 +59,12 @@ describe "Static Pages" do
             it { should have_selector('input#search_form_q') }
             it { should have_button('Search') }
           end
+        end
+
+        describe 'create a todo' do
+          let!(:todo) { FactoryGirl.create(:todo, work: work1, title: 'New Todo') }
+          before { visit root_path }
+          it { should have_content('Todo: 1') }
         end
       end
     end

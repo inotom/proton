@@ -44,6 +44,10 @@ class Work < ActiveRecord::Base
     pay_rt.round
   end
 
+  def unresolved_todos
+    self.todos.select { |todo| todo.status == false }
+  end
+
   private
 
     def worktime_zones(worktime)

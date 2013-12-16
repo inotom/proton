@@ -50,23 +50,6 @@ describe ApplicationHelper do
 
   describe 'payment_rate' do
     let(:user) { FactoryGirl.create(:user) }
-    #let(:work_full) { FactoryGirl.create(:work, user: user, title: 'New Work Full') }
-    #let(:work_no_payment) { FactoryGirl.create(:work, user: user, title: 'New Work No Payment') }
-    #let(:work_no_time) { FactoryGirl.create(:work, user: user, title: 'New Work No Time') }
-
-    #let!(:worktime_full) { FactoryGirl.create(:worktime,
-    #                                      start_time: 11.hours.ago,
-    #                                      end_time: 10.hours.ago,
-    #                                      payment: 5000,
-    #                                      work: work_full) }
-    #let!(:worktime_no_payment) { FactoryGirl.create(:worktime,
-    #                                      start_time: 11.hours.ago,
-    #                                      end_time: 10.hours.ago,
-    #                                      work: work_no_payment) }
-    #let!(:worktime_no_time) { FactoryGirl.create(:worktime,
-    #                                      start_time: 15.minutes.ago,
-    #                                      payment: 3000,
-    #                                      work: work_no_time) }
 
     describe 'no payment and no worktime' do
       let(:work) { FactoryGirl.create(:work, user: user, title: 'New Work') }
@@ -121,6 +104,26 @@ describe ApplicationHelper do
 
       it 'should return correct payment rate' do
         expect(work.payment_rate).to eq(2502)
+      end
+    end
+  end
+
+  describe 'todos' do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:work) { FactoryGirl.create(:work,
+                                    user: user,
+                                    title: 'New Work') }
+    before { sign_in user }
+
+    it 'should have no todos' do
+      expect(work.unresolved_todos.size).to eq(0)
+    end
+
+    describe 'create a todo' do
+      let!(:todo) { FactoryGirl.create(:todo, work: work) }
+
+      it 'should have one todo' do
+        expect(work.unresolved_todos.size).to eq(1)
       end
     end
   end

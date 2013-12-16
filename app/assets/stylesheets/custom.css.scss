@@ -315,6 +315,12 @@ input {
     font: {
       size: 20px;
     }
+    .badge {
+      margin: {
+        left: 5px;
+      }
+      vertical-align: middle;
+    }
   }
 }
 .work-done {

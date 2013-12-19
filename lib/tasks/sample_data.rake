@@ -40,7 +40,9 @@ namespace :db do
     end
     5.times do |n|
       name = "Orderer Name #{n}"
-      users.each { |user| user.orderers.create!(name: name, user: user) }
+      users.each { |user| user.orderers.create!(name: name,
+                                                color_index: n+1,
+                                                user: user) }
     end
   end
 end

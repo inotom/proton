@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213122332) do
+ActiveRecord::Schema.define(version: 20131219044326) do
 
   create_table "orderers", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "color_index", default: 1
   end
 
   add_index "orderers", ["user_id"], name: "index_orderers_on_user_id"

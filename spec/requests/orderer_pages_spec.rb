@@ -16,8 +16,8 @@ describe "Orderer pages" do
     it { should have_content('Orderers') }
     it { should have_button('Create Orderer') }
     it { should have_link('Back', root_path) }
-    it { should have_selector("h2.orderer.orderer-" + (o1.id % 5).to_s) }
-    it { should have_selector("h2.orderer.orderer-" + (o2.id % 5).to_s) }
+    it { should have_selector("h2.orderer.orderer-" + (o1.color_index).to_s) }
+    it { should have_selector("h2.orderer.orderer-" + (o2.color_index).to_s) }
 
     describe "orderers" do
       it { should have_content(o1.name) }
@@ -70,6 +70,7 @@ describe "Orderer pages" do
     describe "page" do
       it { should have_title('Edit orderer') }
       it { should have_content("Update orderer \"#{orderer.name}\"") }
+      it { should have_selector('select#orderer_color_index') }
       it { should have_link('Back', orderers_path) }
     end
 
@@ -91,7 +92,18 @@ describe "Orderer pages" do
       it { should have_content('Orderer updated!') }
       it { should have_content('Updated Orderer Name') }
     end
+
+    describe "color changing" do
+      before do
+        select 'Color 2', from: 'orderer[color_index]'
+        click_button 'Update orderer'
+      end
+
+      it { should_not have_selector('.orderer.orderer-1') }
+      it { should have_selector('.orderer.orderer-2') }
+    end
   end
+
 
   describe "orderer destruction" do
     before { FactoryGirl.create(:orderer, user: user) }

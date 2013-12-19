@@ -440,9 +440,9 @@ input {
   }
 }
 $ordererColors: #ccf #cff #cfc #ffc #fcc;
-@for $i from 0 through 4 {
+@for $i from 1 through 5 {
   .orderer-#{$i} {
-    background-color: nth($ordererColors, $i+1);
+    background-color: nth($ordererColors, $i);
   }
 }
 .orderer-name-box {
@@ -490,6 +490,22 @@ $ordererColors: #ccf #cff #cfc #ffc #fcc;
 }
 .orderers-page-nav {
   text-align: center;
+}
+.color-select {
+  margin: {
+    bottom: 15px;
+  }
+  @for $i from 1 through 5 {
+    option[value="#{$i}"] {
+      &:before {
+        content: '　';
+        margin: {
+          right: 5px;
+        }
+        background-color: nth($ordererColors, $i);
+      }
+    }
+  }
 }
 /* }}} */
 

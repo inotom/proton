@@ -7,6 +7,8 @@
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :color_index %>
+      <%= f.select :color_index, Color::INDEXS, {}, { class: 'form-control color-select' } %>
       <%= f.submit "Update orderer", class: "btn btn-lg btn-primary" %>
     <% end %>
     <div class="orderers-page-nav">

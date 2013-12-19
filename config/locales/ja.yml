@@ -103,6 +103,7 @@ ja:
         memo: メモ
       orderer:
         name: 発注者名
+        color_index: 色
   view:
     year: 年
     total_payments: 総収入

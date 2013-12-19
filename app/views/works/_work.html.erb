@@ -9,7 +9,7 @@
   <div class="orderer-name-box">
     <% orderer = @orderers.find_by(id: work.orderer_id) %>
     <% if orderer %>
-      <span class="orderer orderer-<%= orderer.id % 5 %>">
+      <span class="orderer orderer-<%= orderer.color_index %>">
         <%= orderer.name %>
       </span>
     <% end %>

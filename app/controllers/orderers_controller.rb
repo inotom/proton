@@ -40,7 +40,8 @@ class OrderersController < ApplicationController
   private
 
     def orderer_params
-      params.require(:orderer).permit(:name)
+      params.require(:orderer).permit(:name,
+                                      :color_index)
     end
 
     def correct_user
